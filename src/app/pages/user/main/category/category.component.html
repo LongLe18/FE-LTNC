@@ -1,0 +1,64 @@
+
+<div style="padding-left:6%">
+    <div class="left-sidebar">
+        <h2>DANH MỤC</h2>
+        <div class="panel-group category-products" id="accordian">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body" *ngFor="let item of subCategory">
+                    <ul>
+                        <li><a href="/pages-user/product/{{item.id_Category}}">{{item.name_Category}}</a></li>						
+                    </ul>
+                </div>                   
+            </div>
+        </div>
+
+        <h2>NHÃN HIỆU</h2>
+        <div class="panel-group category-products" id="accordian1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body" *ngFor="let brand of subBrand">
+                    <ul>
+                        <li><a href="{{brand.idBrand}}">{{brand.nameBrand}}</a></li>						
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-range">
+            <h2>Khoảng Giá</h2>
+            <div class="well text-center">
+                <div class="slider slider-horizontal" style="width: 178px;">
+                    <div class="slider-track">
+                        <div class="slider-selection" style="left: 0%; width: 100%;"></div>
+                        <div class="slider-handle round left-round" style="left: 0%;"></div>
+                        <div class="slider-handle round" style="left: 100%;"></div>
+                    </div>
+                    <div class="tooltip top" style="top: -30px; left: 49.5px;">
+                        <div class="tooltip-arrow"></div>
+                        <div class="tooltip-inner">0 : 1000000</div>
+                    </div>
+                    <div class="slider slider-horizontal" style="width: 178px;">
+                        <div class="slider-track">
+                            <div class="slider-selection" style="left: 0%; width: 100%;"></div>
+                            <div class="slider-handle round left-round" style="left: 0%;"></div>
+                            <div class="slider-handle round" style="left: 100%;"></div>
+                        </div>
+                        <div class="tooltip top" style="top: -30px; left: 49.5px;">
+                            <div class="tooltip-arrow"></div><div class="tooltip-inner">0 : 1000000</div>
+                        </div>
+                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000" data-slider-step="500" 
+                        data-slider-value="[0,1000000]" id="sl2" style=""></div></div><br> <b class="pull-left">0 VNĐ</b> <b class="pull-right">10,000,000 VNĐ</b>
+            </div>
+        </div>
+
+        <div class="shipping text-center">
+            <h2 style="margin-top:10px">Quảng Cáo</h2>
+            <img *ngFor="let ad of ads" style="margin-top:2%" src="{{ad.imageAds}}" alt="" />
+        </div>
+    </div>
+</div>

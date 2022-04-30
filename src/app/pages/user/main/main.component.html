@@ -1,0 +1,39 @@
+<div class="header-bottom" style="padding-bottom:10px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important; padding-left: 15%">
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a class="nav-link active text-none-decoration" href="#">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-none-decoration" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Các loại đồ gia dụng
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a *ngFor="let item of subCategory" class="dropdown-item text-none-decoration" href="/pages-user/product/{{item.id_Category}}">{{item.name_Category}}</a>
+                          </div>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-none-decoration" href="/pages-user/contact">Liên hệ</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<ngx-slider></ngx-slider>
+<div class="container">
+  <div class="row">
+    <ngx-category class="col-sm-3" ></ngx-category>
+    <ngx-product [idCate]="idCate" class="col-sm-9" ></ngx-product>
+  </div>
+</div>

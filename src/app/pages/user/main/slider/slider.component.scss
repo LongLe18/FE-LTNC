@@ -1,0 +1,80 @@
+@import '../../../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+
+@include nb-install-component() {
+  .solar-card nb-card-header {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  @include media-breakpoint-down(sm) {
+    ngx-traffic {
+      display: none;
+    }
+  }
+}
+
+#slider {
+  padding-bottom: 45px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.get {
+  border: 0 none;
+  border-radius: 0;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 23px;
+  text-decoration: none;
+}
+
+.carousel-indicators li{
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.carousel-inner {
+  padding-left: 40px;
+}
+
+.active {
+  display: flex !important;
+}
+
+.carousel-indicators li.active {
+  background-color: #219AFC;
+}
+
+.carousel-item h1 span {
+  color: #219AFC;
+}
+
+.carousel-item h1 {
+  color: #000000;
+  font-family: abel;
+  font-size: 48px;
+  margin-top: 115px;
+}
+
+.control-carousel {
+  position: absolute;
+  top: 50%;
+  font-size: 60px;
+  color: #C2C2C1;
+}
+
+.hidden-xs {
+  display: block!important;
+}
+
+.right {
+  right: 0;
+}

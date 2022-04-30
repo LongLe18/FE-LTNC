@@ -1,0 +1,40 @@
+<div>
+    <h2 class="Title-edit" style="margin-bottom:3%;margin-bottom: 0;padding-bottom: 10px; text-align:center">CẬP NHẬT TÀI KHOẢN</h2>
+    <div class="table-content" style="padding-top: 10px;padding-bottom: 10px;border: 2px solid black;
+        width:40%;margin:auto; background:#219AFC; border-radius:15px; margin-bottom:50px">
+        <form style="margin-left: 10%; width: 80%;">
+            <div class="form-group">
+              <label for="exampleInputPassword1">Mật khẩu</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mời bạn nhập mật khẩu" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputUsername">User Name</label>
+              <input type="text" class="form-control" id="exampleInputUsername" placeholder="Nhập UserName" readonly [(ngModel)]="userName" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Nhập Email" readonly [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputName">Họ và tên</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Mời bạn nhập họ và tên" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputAddress">Địa chỉ</label>
+                <input type="text" class="form-control" id="exampleInputAddress" placeholder="Mời bạn địa chỉ" [(ngModel)]="address" [ngModelOptions]="{standalone: true}">
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputPhone">Số điện thoại</label>
+                <input type="tel" class="form-control" id="exampleInputPhone" placeholder="Mời bạn số điện thoại" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div style="display: flex; justify-content: space-around;">
+                <button type="button" class="btn btn-success" (click)="submit(userId)">Lưu</button>
+                <button type="submit" class="btn btn-danger" (click)="cancel()">Thoát</button>
+            </div>
+          </form>
+    </div>
+</div>
