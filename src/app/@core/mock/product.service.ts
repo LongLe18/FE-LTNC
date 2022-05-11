@@ -17,6 +17,16 @@ export class ProductService extends ProductData {
     return Observable.throw(error.error.message || "Server error");
   }
 
+  getProduct(id: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/getProductByID?id=${id}`;
+    return this.http.get(url).catch(this.errorHandler)     
+  }
+
+  getImageDetailProduct(id: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/getImageDetail?id=${id}`;
+    return this.http.get(url).catch(this.errorHandler)
+  }
+
   getListProduct(): Observable<any> {
     let url = environment.BASE_URL + '/api/Product/getproducts';
     return this.http.get(url).catch(this.errorHandler)    
@@ -29,6 +39,21 @@ export class ProductService extends ProductData {
 
   getListProductByCategory(idCategory: any, pageIndex: any, pageSize: any): Observable<any> {
     let url = environment.BASE_URL + `/api/Product/getProductByCategory?IDCategory=${idCategory}&pageSize=${pageSize}&pageIndex=${pageIndex}`;
+    return this.http.get(url).catch(this.errorHandler);
+  }
+
+  getListProductByBrand(idBrand: any, pageIndex: any, pageSize: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/getProductByIDBrand?id_Brand=${idBrand}&pageSize=${pageSize}&pageIndex=${pageIndex}`;
+    return this.http.get(url).catch(this.errorHandler);
+  }
+
+  getListSaleProducts(): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/getSaleProduct`;
+    return this.http.get(url).catch(this.errorHandler);
+  }
+
+  getInsurranceProduct(id): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/getInsurrenceBySeri/${id}`;
     return this.http.get(url).catch(this.errorHandler);
   }
 }

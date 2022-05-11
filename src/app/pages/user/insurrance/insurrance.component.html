@@ -7,7 +7,10 @@
             <p>Tra cứu hạn bảo hành (<i>Nhập số seri, sau đó click tra cứu để lấy dữ liệu</i>).</p>
             <div class="check-bh">
                 <input id="text_seri" type="text" placeholder="Nhập số seri"> 
-                <button id="btn-check" class="btn btn-info btn-lg" type="button" class="btn btn-primary" 
+                <button class="btn btn-info btn-lg" type="button" class="btn btn-primary">
+                    <i class="fas fa-search" (click)="submit()"></i>
+                </button>
+                <button id="btn-check" class="btn btn-info btn-lg" type="button" hidden class="btn btn-primary" 
                     data-toggle="modal" data-target="#exampleModal">
                     <i class="fas fa-search"></i>
                 </button>
@@ -104,12 +107,17 @@
                     <label for="uname"><b>Hạn bảo hành: </b></label>
                     <label for="uname"><b>Tình trạng kích hoạt: </b></label>
                 </div>
-                <div class="col-lg-5" style="display: flex; flex-direction: column;">
-                    <span id="productName" class="show-bh" style="float: right;"></span>
-                    <span id="seriNumber"  class="show-bh" style="float: right;"></span>
-                    <span id="date1"  class="show-bh" style="float: right; "></span>
-                    <div  class="show-bh" style="float: right; color: red;"><span id="date2" style="margin-right:3px"> </span> <span id="th" style="float: right;"> tháng</span></div>
-                    <span  class="show-bh" id="date3" style="float: right; color: red;"> </span>
+                <div class="col-lg-6" style="display: flex; flex-direction: column;">
+                    <span id="productName" class="show-bh" style="float: right;">{{warrantly.nameProduct}}</span>
+                    <span id="seriNumber"  class="show-bh" style="float: right;">{{warrantly.idSeri}}</span>
+                    <span id="date1"  class="show-bh" style="float: right; ">{{warrantly.purchaseDate}}</span>
+                    <div  class="show-bh" style="float: right; color: red;">
+                        <span id="date2" style="margin-right:3px" *ngIf="warrantly.WarrantyPeriod == 0">Không bảo hành </span> 
+                        <span id="date2" style="margin-right:3px" *ngIf="warrantly.WarrantyPeriod != 0">warrantly.WarrantyPeriod </span> 
+                        <span id="th" style="float: right;"> </span>
+                    </div>
+                    <span  class="show-bh" id="date3" style="float: right; color: red;" *ngIf="warrantly.statusSeri != 1"> Chưa kích hoạt</span>
+                    <span  class="show-bh" id="date3" style="float: right; color: green;" *ngIf="warrantly.statusSeri == 1"> Đã kích hoạt</span>
                 </div>
             </div>
                

@@ -1,5 +1,5 @@
 
-<div class="features_items">
+<div class="features_items" *ngIf="idCate != undefined">
     <h2 class="title text-center">Danh Sách Sản Phẩm</h2>
     <marquee width="96%" behavior="alternate" bgcolor="#fe980f" style="margin-left:2%;margin-bottom:3%;border:2px solid black" *ngIf="productsByCate != ''">
         <h2 class="title1 text-center" style="color:black; font-size:18px; text-transform:uppercase;width:60%" >
@@ -20,10 +20,10 @@
                             <b>Số lượng</b>: còn {{productByCate.quantity}} sản phẩm
                         </p>
                         <a href="#" style=" pointer-events: auto; padding: 6px 12px;"
-                            class="btn btn-default add-to-cart" *ngIf="product.quantity != 0">
+                            class="btn btn-default add-to-cart" *ngIf="productByCate.quantity != 0">
                             <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                         <img class="img-product"
-                            src="assets/images/home/hf.jpg" alt="" *ngIf="product.quantity == 0"/>
+                            src="assets/images/home/hf.jpg" alt="" *ngIf="productByCate.quantity == 0"/>
                     </div>
 
                     <div class="product-overlay">
@@ -33,17 +33,69 @@
                             <h4 style="color:#219AFC;" >{{productByCate.price}}</h4> 
                             <p style="font-weight: bold;">{{productByCate.name_Product}}</p>
                             <a href="#" style=" pointer-events: auto; background-color: #fff !important;" 													
-                                class="btn btn-default add-to-cart" *ngIf="product.quantity != 0"><i
+                                class="btn btn-default add-to-cart" *ngIf="productByCate.quantity != 0"><i
                                 class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                             <img class="img-product"
-                                    src="assets/images/home/hf.jpg" alt="" *ngIf="product.quantity == 0"/>
+                                    src="assets/images/home/hf.jpg" alt="" *ngIf="productByCate.quantity == 0"/>
                         </div>
                     </div>
                     <img src="assets/images/home/new.png" class="new" alt="" />
                 </div>
                 <div class="choose" style="text-align: center;">
                     <ul class="nav nav-pills nav-justified" style="background:#219AFC !important;">
-                        <li style="width: 100%"><a href="#"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
+                        <li style="width: 100%;padding: 10px 0"><a href="/pages-user/detailproduct/{{productByCate.id_Product}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features_items" *ngIf="idBrand != undefined">
+    <h2 class="title text-center">Danh Sách Sản Phẩm</h2>
+    <marquee width="96%" behavior="alternate" bgcolor="#fe980f" style="margin-left:2%;margin-bottom:3%;border:2px solid black" *ngIf="productsByCate != ''">
+        <h2 class="title1 text-center" style="color:black; font-size:18px; text-transform:uppercase;width:60%" >
+            Sản phẩm theo hãng
+        </h2>
+    </marquee>
+    <div style="display: flex; flex-wrap: wrap;">
+        <div class="col-sm-4 tim-kiem" *ngFor="let productByBrand of productsByBrand">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="{{productByBrand.image}}" alt="" />
+                        <h2>{{productByBrand.price - productByBrand.sale}}</h2>
+                        <h4 *ngIf="productByBrand.sale == 0" style="color:transparent">{{productByBrand.price}}</h4> <!-- sale -->
+                        <h4 *ngIf="productByBrand.sale != 0">{{productByBrand.price}}</h4> <!-- sale -->
+                        <p style="font-weight: bold;">{{productByBrand.name_Product}}</p>
+                        <p  style="font-size:12px">
+                            <b>Số lượng</b>: còn {{productByBrand.quantity}} sản phẩm
+                        </p>
+                        <a href="#" style=" pointer-events: auto; padding: 6px 12px;"
+                            class="btn btn-default add-to-cart" *ngIf="productByBrand.quantity != 0">
+                            <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                        <img class="img-product"
+                            src="assets/images/home/hf.jpg" alt="" *ngIf="productByBrand.quantity == 0"/>
+                    </div>
+
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <img src="{{productByBrand.image}}" alt="" />
+                            <h2>{{productByBrand.price - productByBrand.sale}}</h2>
+                            <h4 style="color:#219AFC;" >{{productByBrand.price}}</h4> 
+                            <p style="font-weight: bold;">{{productByBrand.name_Product}}</p>
+                            <a href="#" style=" pointer-events: auto; background-color: #fff !important;" 													
+                                class="btn btn-default add-to-cart" *ngIf="productByBrand.quantity != 0"><i
+                                class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                            <img class="img-product"
+                                    src="assets/images/home/hf.jpg" alt="" *ngIf="productByBrand.quantity == 0"/>
+                        </div>
+                    </div>
+                    <img src="assets/images/home/new.png" class="new" alt="" />
+                </div>
+                <div class="choose" style="text-align: center;">
+                    <ul class="nav nav-pills nav-justified" style="background:#219AFC !important;">
+                        <li style="width: 100%;padding: 10px 0"><a href="/pages-user/detailproduct/{{productByBrand.id_Product}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
                     </ul>
                 </div>
             </div>
@@ -102,15 +154,101 @@
                             </div>
                             <div class="choose" style="text-align: center;">
                                 <ul class="nav nav-pills nav-justified" style="background:#219AFC !important;">
-                                    <li style="width: 100%"><a href="#"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
+                                    <li style="width: 100%"><a href="/pages-user/detailproduct/{{product.id_Product}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                 </mat-tab>
-                <mat-tab label="SẢN PHẨM KHUYẾN MÃI">Sản Phẩm Khuyến Mãi</mat-tab>
-                <mat-tab label="BÁN CHẠY NHẤT">Bán Chạy Nhất</mat-tab>
+                <mat-tab label="SẢN PHẨM KHUYẾN MÃI">
+
+                    <div class="col-sm-4 tim-kiem" *ngFor="let saleproduct of saleProducts">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{saleproduct.image}}" alt="" />
+                                    <h2>{{saleproduct.price - saleproduct.sale}}</h2>
+                                    <h4 *ngIf="saleproduct.sale == 0" style="color:transparent">{{saleproduct.price}}</h4> <!-- sale -->
+                                    <h4 *ngIf="saleproduct.sale != 0">{{saleproduct.price}}</h4> <!-- sale -->
+                                    <p style="font-weight: bold;">{{saleproduct.name_Product}}</p>
+                                    <p  style="font-size:12px">
+                                        <b>Số lượng</b>: còn {{saleproduct.quantity}} sản phẩm
+                                    </p>
+                                    <a href="#" style=" pointer-events: auto; padding: 6px 12px;"
+								        class="btn btn-default add-to-cart" *ngIf="saleproduct.quantity != 0">
+                                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                    <img class="img-product"
+                                        src="assets/images/home/hf.jpg" alt="" *ngIf="saleproduct.quantity == 0"/>
+                                </div>
+
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <img src="{{saleproduct.image}}" alt="" />
+                                        <h2>{{saleproduct.price - saleproduct.sale}}</h2>
+                                        <h4 style="color:#219AFC;" >{{saleproduct.price}}</h4> 
+                                        <p style="font-weight: bold;">{{saleproduct.name_Product}}</p>
+                                        <a href="#" style=" pointer-events: auto; background-color: #fff !important;"													
+									        class="btn btn-default add-to-cart" *ngIf="saleproduct.quantity != 0"><i
+									        class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        <img class="img-product"
+                                            src="assets/images/home/hf.jpg" alt="" *ngIf="saleproduct.quantity == 0"/>   
+                                    </div>
+                                </div>
+                                <img src="assets/images/home/sale.png" class="new" alt="" />                               
+                            </div>
+                            <div class="choose" style="text-align: center;">
+                                <ul class="nav nav-pills nav-justified" style="background:#219AFC !important;">
+                                    <li style="width: 100%"><a href="/pages-user/detailproduct/{{saleproduct.id_Product}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="BÁN CHẠY NHẤT">
+                    <div class="col-sm-4 tim-kiem" *ngFor="let salefastlyproduct of salefastlyProducts">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{salefastlyproduct.image}}" alt="" />
+                                    <h2>{{salefastlyproduct.price - salefastlyproduct.sale}}</h2>
+                                    <h4 *ngIf="salefastlyproduct.sale == 0" style="color:transparent">{{salefastlyproduct.price}}</h4> <!-- sale -->
+                                    <h4 *ngIf="salefastlyproduct.sale != 0">{{salefastlyproduct.price}}</h4> <!-- sale -->
+                                    <p style="font-weight: bold;">{{salefastlyproduct.name_Product}}</p>
+                                    <p  style="font-size:12px">
+                                        <b>Số lượng</b>: còn {{salefastlyproduct.quantity}} sản phẩm
+                                    </p>
+                                    <a href="#" style=" pointer-events: auto; padding: 6px 12px;"
+								        class="btn btn-default add-to-cart" *ngIf="salefastlyproduct.quantity != 0">
+                                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                    <img class="img-product"
+                                        src="assets/images/home/hf.jpg" alt="" *ngIf="salefastlyproduct.quantity == 0"/>
+                                </div>
+
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <img src="{{salefastlyproduct.image}}" alt="" />
+                                        <h2>{{salefastlyproduct.price - salefastlyproduct.sale}}</h2>
+                                        <h4 style="color:#219AFC;" >{{salefastlyproduct.price}}</h4> 
+                                        <p style="font-weight: bold;">{{salefastlyproduct.name_Product}}</p>
+                                        <a href="#" style=" pointer-events: auto; background-color: #fff !important;"													
+									        class="btn btn-default add-to-cart" *ngIf="salefastlyproduct.quantity != 0"><i
+									        class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        <img class="img-product"
+                                            src="assets/images/home/hf.jpg" alt="" *ngIf="salefastlyproduct.quantity == 0"/>   
+                                    </div>
+                                </div>
+                                <img src="assets/images/home/banchay.png" class="new" alt="" />                               
+                            </div>
+                            <div class="choose" style="text-align: center;">
+                                <ul class="nav nav-pills nav-justified" style="background:#219AFC !important;">
+                                    <li style="width: 100%"><a href="/pages-user/detailproduct/{{salefastlyproduct.id_Product}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
             </mat-tab-group>
         </div>
     </div>

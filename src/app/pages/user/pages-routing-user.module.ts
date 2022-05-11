@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '../../@core/auth-guard.service';
 import { ContactComponent } from './contact/contact.component';
 import { InsurranceComponent } from './insurrance/insurrance.component';
+import { DetailProductComponent } from './detailproduct/detailproduct.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,8 +18,12 @@ const routes: Routes = [{
       component: MainComponent,
     },
     {
-      path: 'product/:id',
+      path: 'product/cate/:id',
       component: MainComponent,
+    },
+    {
+      path: 'product/brand/:id',
+      component: MainComponent
     },
     {
       path: 'profile',
@@ -32,6 +37,10 @@ const routes: Routes = [{
     {
       path: 'insurrance',
       component: InsurranceComponent
+    },
+    {
+      path: 'detailproduct/:id',
+      component: DetailProductComponent
     }
   ],
 }];

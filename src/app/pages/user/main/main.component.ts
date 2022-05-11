@@ -15,6 +15,7 @@ export class MainComponent implements OnDestroy, OnInit {
   private routeSub: Subscription;
   
   idCate;
+  idBrand;
 
   constructor(private serviceCategory: CategoryData, private route: ActivatedRoute) {
 
@@ -30,8 +31,10 @@ export class MainComponent implements OnDestroy, OnInit {
     });
 
     this.routeSub = this.route.params.subscribe(params => {
-      if (params['id'] != null) {
-          this.idCate = params['id']
+      if (params['id'] != null && window.location.href.split('/')[5] == 'cate') {
+        this.idCate = params['id']
+      } else if (params['id'] != null && window.location.href.split('/')[5] == 'brand') {
+        this.idBrand = params['id'];
       }
     });
 
