@@ -6,7 +6,7 @@ import { ProfileModule } from './profile/profile.module';
 import { ContactModule } from './contact/contact.module';
 import { InsurranceModule } from './insurrance/insurrace.module';
 import { DeTailProductModule } from './detailproduct/detailproduct.module';
-
+import { CartModule } from './cart/cart.module';
 import { PagesRoutingModule } from './pages-routing-user.module';
 
 import { PagesUserComponent } from './pages-user.component';
@@ -21,10 +21,11 @@ import { PagesUserComponent } from './pages-user.component';
     ContactModule,
     InsurranceModule,
     DeTailProductModule,
+    CartModule,
   ],
   declarations: [
     PagesUserComponent,
-  ],
+  ]
 })
 export class PagesUserModule {
 }

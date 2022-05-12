@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { ProductData } from '../../../../@core/data/product';
-
+import { SelectedProductService } from '../../../../selected-product.service';
 
 @Component({
   selector: 'ngx-product',
@@ -10,7 +10,7 @@ import { ProductData } from '../../../../@core/data/product';
 })
 export class ProductComponent implements OnInit, OnChanges {
   constructor(private serviceProduct: ProductData, private toastrService: NbToastrService,
-      ) {          
+    private itemServ: SelectedProductService  ) {          
   }
   
   products;
@@ -41,4 +41,10 @@ export class ProductComponent implements OnInit, OnChanges {
       this.products = res['data'];
     })
   }
+
+  addToCart(product) {
+    this.itemServ.add(product);
+    this.toastrService.show('Sản phẩm đã được thêm vào giỏ hàng', 'Thành công', { status: 'success' })
+  }
+
 }

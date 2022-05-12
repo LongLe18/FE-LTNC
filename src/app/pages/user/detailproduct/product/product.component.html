@@ -54,14 +54,14 @@
                 </span>
 
                 <p>
-                    <a href="" type="button" *ngIf="productdetail?.quantity == 0" style="pointer-events: none; background:#DDDDDD"
+                    <button href="" type="button" *ngIf="productdetail?.quantity == 0" style="pointer-events: none; background:#DDDDDD" (click)="addToCart(productdetail)"
                         class="btn btn-fefault cart"> <i
                         class="fa fa-shopping-cart"></i> Thêm vào giỏ
-                    </a>
-                    <a href="" type="button" *ngIf="productdetail?.quantity != 0" style=" pointer-events: auto;"
+                    </button>
+                    <button href="" type="button" *ngIf="productdetail?.quantity != 0" style=" pointer-events: auto;" (click)="addToCart(productdetail)"
                         class="btn btn-fefault cart"> <i
                         class="fa fa-shopping-cart"></i> Thêm vào giỏ
-                    </a>
+                    </button>
                 </p>
                 <br/>
 
@@ -103,9 +103,9 @@
                                     <p  style="font-size:12px">
                                         <b>Số lượng</b>: còn {{product.quantity}} sản phẩm
                                     </p>
-                                    <a href="#" style=" pointer-events: auto; padding: 6px 12px; margin-bottom: 20px;"
+                                    <button (click)="addToCart(product)" style=" pointer-events: auto; padding: 6px 12px; margin-bottom: 20px;"
 								        class="btn btn-default add-to-cart" *ngIf="product.quantity != 0">
-                                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
                                     <img class="img-product"
                                         src="assets/images/home/hf.jpg" alt="" *ngIf="product.quantity == 0"/>
                                 </div>
@@ -116,9 +116,9 @@
                                         <h2>{{product.price - product.sale}}</h2>
                                         <h4 style="color:#219AFC;" >{{product.price}}</h4> 
                                         <p style="font-weight: bold;">{{product.name_Product}}</p>
-                                        <a href="#" style=" pointer-events: auto; background-color: #fff !important;"													
+                                        <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(product)"												
 									        class="btn btn-default add-to-cart" *ngIf="product.quantity != 0"><i
-									        class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+									        class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
                                         <img class="img-product"
                                             src="assets/images/home/hf.jpg" alt="" *ngIf="product.quantity == 0"/>   
                                     </div>

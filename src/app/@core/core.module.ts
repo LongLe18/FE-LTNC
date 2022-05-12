@@ -57,7 +57,7 @@ const socialLinks = [
 
 const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
-  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+  // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
   { provide: AuthGuard }, 
   { provide: NbRoleProvider, useClass: NbSimpleRoleProvider},
   { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useExisting: RippleService },

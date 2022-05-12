@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { SelectedProductService } from '../../../selected-product.service';
 
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
@@ -62,6 +63,7 @@ export class HeaderUserComponent implements OnInit, OnDestroy {
     private serviceUser: UserData,
     private serviceCategory: CategoryData,
     private router: Router,
+    private itemServ: SelectedProductService,
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -122,6 +124,10 @@ export class HeaderUserComponent implements OnInit, OnDestroy {
         this.currentTheme = themeName;
         this.rippleService.toggle(themeName?.startsWith('material'));
       });
+  }
+
+  get count(){
+    return this.itemServ.items.length
   }
 
   ngOnDestroy() {

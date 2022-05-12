@@ -46,7 +46,7 @@
           <i class="fa fa-star" style="padding: 5px 13px ;border:2px solid black; border-radius:15px"></i> <span class="label"> Danh sách</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a *ngFor="let item of subCategory" class="dropdown-item" href="/pages-user/product/{{item.id_Category}}">{{item.name_Category}}</a>
+          <a *ngFor="let item of subCategory" class="dropdown-item" href="/pages-user/product/cate/{{item.id_Category}}">{{item.name_Category}}</a>
         </div>
       </li>
       <li class="nav-item">
@@ -62,10 +62,10 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/pages-user/cart">
           <i class="fa fa-shopping-cart" style="padding: 5px 13px ;border:2px solid black; border-radius:15px"></i> 
           <span class="label"> Giỏ hàng </span>
-          <span class="cart"> 0 </span>
+          <span class="cart"> {{count}} </span>
         </a>
       </li>
     </ul>

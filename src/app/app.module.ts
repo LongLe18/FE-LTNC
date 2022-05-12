@@ -21,6 +21,8 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 
+import { SelectedProductService } from './selected-product.service';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -41,6 +43,7 @@ import {
     ThemeModule.forRoot(),
   ],
   bootstrap: [AppComponent],
+  providers: [SelectedProductService]
 })
 export class AppModule {
 }

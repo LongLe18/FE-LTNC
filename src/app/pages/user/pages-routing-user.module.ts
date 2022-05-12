@@ -8,6 +8,7 @@ import { AuthGuard } from '../../@core/auth-guard.service';
 import { ContactComponent } from './contact/contact.component';
 import { InsurranceComponent } from './insurrance/insurrance.component';
 import { DetailProductComponent } from './detailproduct/detailproduct.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [{
   path: '',
@@ -41,6 +42,10 @@ const routes: Routes = [{
     {
       path: 'detailproduct/:id',
       component: DetailProductComponent
+    },
+    {
+      path: 'cart',
+      component: CartComponent
     }
   ],
 }];

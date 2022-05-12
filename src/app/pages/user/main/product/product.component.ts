@@ -2,7 +2,21 @@ import {Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges} from '@an
 import { MatPaginator } from '@angular/material/paginator';
 import { NbToastrService } from '@nebular/theme';
 import { ProductData } from '../../../../@core/data/product';
+import { SelectedProductService } from '../../../../selected-product.service';
 
+interface Product {
+    describe: String
+    id_Brand: String
+    id_Category: String
+    id_Product: String
+    id_Season: Number
+    image: String
+    name_Product: String
+    price: Number
+    quantity: Number
+    sale: Number
+    warranty_Period: Number
+}
 
 @Component({
   selector: 'ngx-product',
@@ -10,7 +24,7 @@ import { ProductData } from '../../../../@core/data/product';
   templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit, OnChanges {
-  constructor(private serviceProduct: ProductData, private toastrService: NbToastrService) {  }
+  constructor(private serviceProduct: ProductData, private toastrService: NbToastrService, private itemServ: SelectedProductService) {  }
   
 
   length;
@@ -22,7 +36,8 @@ export class ProductComponent implements OnInit, OnChanges {
   @Input() idCate = '';
   @Input() idBrand = '';
 
-  products;
+  products: Product;
+
   productsByCate = '';
   productsByBrand = '';
   saleProducts;
@@ -34,20 +49,16 @@ export class ProductComponent implements OnInit, OnChanges {
         if (res["status"] == "SUCCESS") {
           this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
           this.productsByCate = res["data"];
-          console.log(this.productsByCate);
         }
       }, error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' }))
-      console.log(changes["idCate"].currentValue)
     }
     if (changes["idBrand"] != undefined) {
       this.serviceProduct.getListProductByBrand(changes["idBrand"].currentValue, 0, 10).subscribe(res => {
         if (res["status"] == "SUCCESS") {
           this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
           this.productsByBrand = res["data"];
-          console.log(this.productsByBrand);
         }
       }, error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' }))
-      console.log(changes["idBrand"].currentValue)
     }
 
   }
@@ -86,5 +97,10 @@ export class ProductComponent implements OnInit, OnChanges {
     }, 
       error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' })
     )
+  }
+
+  addToCart(product) {
+    this.itemServ.add(product);
+    this.toastrService.show('Sản phẩm đã được thêm vào giỏ hàng', 'Thành công', { status: 'success' })
   }
 }

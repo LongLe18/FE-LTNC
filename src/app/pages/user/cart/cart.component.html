@@ -1,0 +1,112 @@
+<div class="header-bottom" style="padding-bottom:10px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important; padding-left: 15%">
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a class="nav-link active text-none-decoration" href="#">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-none-decoration" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Các loại đồ gia dụng
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a *ngFor="let item of subCategory" class="dropdown-item text-none-decoration" href="/pages-user/product/cate/{{item.id_Category}}">{{item.name_Category}}</a>
+                          </div>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-none-decoration" href="/pages-user/contact">Liên hệ</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<section>
+	<div class="container">
+
+			<section id="cart_items">
+			    <div class="container">
+                    <div class="breadcrumbs">
+                        <ol class="breadcrumb">
+                            <li><a href="/pages-user/main">Home</a></li>
+                            <li > Giỏ Hàng </li>
+                        </ol>
+				    </div>
+				    <div class="table-responsive cart_info">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr style="text-align:center" class="cart_menu">
+                                    <td  class="image">Hình Ảnh</td>
+                                    <td class="description" >Thông Tin Sản Phẩm</td>
+                                    <td class="price">Giá Bán</td>
+                                    <td class="quantity">Số Lượng</td>
+                                    <td class="total">Tổng Tiền</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border:1px solid #219AFC" *ngFor="let item of items">
+                                    <td class="cart_product"><a href=""><img
+                                            src="{{item.image}}" alt=""></a></td>
+                                    <td class="cart_description">
+                                        <h4>
+                                            <a href="#">{{item.name_Product}}</a>
+                                        </h4>
+                                        <p>
+                                            Mã Sản Phẩm: {{item.id_Product}}</p>                                          
+                                    </td>
+                                    <td class="cart_price">
+                                        <p> {{item.price}} VNĐ</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_button">
+                                            <button class="cart_quantity_down" (click)="down(item)"> - </button>
+                                            <input class="cart_quantity_input" type="text"
+                                                    value="{{item.count}}" autocomplete="off" size="2"
+                                                    disabled=""> 
+                                            <button class="cart_quantity_up" (click)="up(item)" > + </button> 
+                                        </div>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p class="cart_total_price">{{(item.price - item.sale) * item.count}} VNĐ</p>
+                                    </td>
+                                    <td class="cart_delete"><button class="cart_quantity_delete" (click)="remove(item.id_Product)" style="background-color: transparent;"><i class="fa fa-times"></i></button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+				    </div>
+			    </div>
+			</section>
+			<!--/#cart_items-->
+
+			<section id="do_action">
+			    <div class="container">
+				<!-- <div class="heading">
+					<h3>Bạn muốn làm gì tiếp theo?</h3>
+					
+				</div> -->
+                    <div class="row">				
+                        <div class="col-sm-12" style="text-align:center; color:white">
+                            <!-- <div class="total_area">						
+                                <a class="btn btn-default update" href="index.jsp" onclick="return confirm('Bạn muốn hủy đơn hàng ?')">Hủy Đơn Hàng</a> 
+                                <a
+                                    class="btn btn-default check_out" href="checkout.jsp">Mua Hàng</a>
+                            </div> -->
+                            <button class="btn btn-default check_out" (click)="payment()">Mua Hàng</button>
+                        </div>
+                    </div>
+			    </div>
+			</section>
+			<!--/#do_action-->
+		</div>
+</section>
