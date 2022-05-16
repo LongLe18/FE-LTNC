@@ -95,6 +95,8 @@ export class HeaderUserComponent implements OnInit, OnDestroy {
       this.serviceUser.getUser().subscribe(res => {
         this.isLogined = true;
         this.user = res;
+      }, error => {
+        localStorage.removeItem('auth_app_token');
       });
     }
 

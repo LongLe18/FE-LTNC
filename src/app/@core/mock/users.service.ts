@@ -40,7 +40,7 @@ export class UserService extends UserData {
           this.Token = token['token'];
         }       
       });
-    return this.http.get<User>(url)      
+    return this.http.get<User>(url).catch(this.errorHandler);
   }
 
   getOTP(phone, userName, password): Observable<any> {

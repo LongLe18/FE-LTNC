@@ -7,6 +7,7 @@ import { ContactModule } from './contact/contact.module';
 import { InsurranceModule } from './insurrance/insurrace.module';
 import { DeTailProductModule } from './detailproduct/detailproduct.module';
 import { CartModule } from './cart/cart.module';
+import { CheckOutModule } from './checkout/checkout.module';
 import { PagesRoutingModule } from './pages-routing-user.module';
 
 import { PagesUserComponent } from './pages-user.component';
@@ -22,6 +23,7 @@ import { PagesUserComponent } from './pages-user.component';
     InsurranceModule,
     DeTailProductModule,
     CartModule,
+    CheckOutModule,
   ],
   declarations: [
     PagesUserComponent,

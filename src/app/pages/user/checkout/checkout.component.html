@@ -1,0 +1,133 @@
+<div class="header-bottom" style="padding-bottom:10px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent !important; padding-left: 15%">
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a class="nav-link active text-none-decoration" href="#">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-none-decoration" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Các loại đồ gia dụng
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a *ngFor="let item of subCategory" class="dropdown-item text-none-decoration" href="/pages-user/product/cate/{{item.id_Category}}">{{item.name_Category}}</a>
+                          </div>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-none-decoration" href="/pages-user/contact">Liên hệ</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<section id="cart_items">
+	<div class="container">
+
+    <div class="breadcrumbs">
+			<ol class="breadcrumb">
+				<li><a href="index.jsp">Home</a></li>
+				<li class="active">Thanh Toán</li>
+			</ol>
+		</div>
+
+    <div class="register-req" >
+			<p style="font-size: 20px; font-weight: bold;">Thông Tin Thanh Toán</p>
+		</div>
+
+    <div class="review-payment">
+			<h2>Thông Tin Đơn Hàng</h2>
+		</div>
+
+    <div class="table-responsive cart_info">
+			<table class="table table-condensed">
+				<thead>
+					<tr class="cart_menu" style="text-align:center">
+						<td class="image">Hình Ảnh</td>
+						<td class="description">Thông Tin Sản Phẩm</td>
+						<td class="price">Giá Bán</td>
+						<td class="quantity">Số Lượng</td>
+						<td class="total">Tổng Tiền</td>
+						<td></td>
+					</tr>
+				</thead>
+				<tbody>
+            <tr style="border:1px solid #219AFC" *ngFor="let item of items">
+                <td class="cart_product"><a href=""><img
+                        src="{{item.image}}" alt=""></a></td>
+                <td class="cart_description">
+                    <h4>
+                        <a href="#">{{item.name_Product}}</a>
+                    </h4>
+                    <p>
+                        Mã Sản Phẩm: {{item.id_Product}}</p>                                          
+                </td>
+                <td class="cart_price">
+                    <p> {{item.price}} VNĐ</p>
+                </td>
+                <td class="cart_quantity">
+                    <div class="cart_quantity_button">
+                        <button class="cart_quantity_down" (click)="down(item)"> - </button>
+                        <input class="cart_quantity_input" type="text"
+                                value="{{item.count}}" autocomplete="off" size="2"
+                                disabled=""> 
+                        <button class="cart_quantity_up" (click)="up(item)" > + </button> 
+                    </div>
+                </td>
+                <td class="cart_total">
+                    <p class="cart_total_price">{{(item.price - item.sale) * item.count}} VNĐ</p>
+                </td>
+                <td class="cart_delete"><button class="cart_quantity_delete" (click)="remove(item.id_Product)" style="background-color: transparent;"><i class="fa fa-times"></i></button></td>
+            </tr>
+				</tbody>
+			</table>
+		</div>
+
+    <br/>
+
+    <div class="shopper-informations" style="text-align: center;">
+      <div class="row" style="border:4px solid #219afc; border-radius:20px;background:silver;">
+
+        <div  style="width:40%; margin-left: 28%;">
+					<div class="shopper-info">
+						<form action="" method="post">
+						  <p style="margin-top: 20px; text-transform:uppercase">Tổng tiền</p>
+							<span style="color: red;"></span>
+							<input type="text" name="Total_Invoice" value="{{totalPrice}}" style="color:red; font-weight:bold; background:#DDDDDD;font-size:20px;border:2px solid #219AFC" readonly>
+							<p style="text-transform:uppercase">Địa Chỉ Giao Hàng</p>
+							
+							<input name="Shipping_Address" id="address" value="{{user?.address}}">
+							<p style="text-transform:uppercase">Số điện thoại</p>
+							<input type="phone" id="phone" name="Phone" value="{{user?.phone}}">
+							<p style="text-transform:uppercase">Địa Chỉ Email</p>
+							<input type="email"  id="email" name="Email" value="{{user?.email}}">
+							<p style="text-transform:uppercase">Ngày giao hàng tiêu chuẩn</p>
+							<input type="text" name="Time_Limit" value="{{DateDelivery}}"  readonly style="background:#DDDDDD;color:red">
+							<p style="text-transform:uppercase">Phương Thức Thanh Toán</p>
+							<select name="Payment_Methods"  (change)="change($event)">
+								<option value="Thanh toán khi giao hàng">Thanh toán khi giao hàng</option>
+								<option value="Thanh toán qua thẻ ngân hàng"> Thanh toán qua thẻ ngân hàng </option>
+							</select>
+							
+							<button class="btn btn-primary" 
+                id="okie" style="margin-bottom: 20px;background: #219AFC;" 
+                (click)="submit()">
+                Xác Nhận Mua Hàng
+              </button>
+						</form>
+					</div>
+				</div>
+
+      </div>
+    </div>
+  </div>
+</section>

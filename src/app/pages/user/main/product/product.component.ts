@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit, OnChanges {
     if (changes["idCate"] != undefined) {
       this.serviceProduct.getListProductByCategory(changes["idCate"].currentValue, 0, 10).subscribe(res => {
         if (res["status"] == "SUCCESS") {
-          this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
+          // this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
           this.productsByCate = res["data"];
         }
       }, error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' }))
@@ -55,7 +55,7 @@ export class ProductComponent implements OnInit, OnChanges {
     if (changes["idBrand"] != undefined) {
       this.serviceProduct.getListProductByBrand(changes["idBrand"].currentValue, 0, 10).subscribe(res => {
         if (res["status"] == "SUCCESS") {
-          this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
+          // this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
           this.productsByBrand = res["data"];
         }
       }, error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' }))

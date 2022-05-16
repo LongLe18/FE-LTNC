@@ -65,7 +65,7 @@ export class CartComponent implements OnDestroy, OnInit {
   }
 
   payment() {
-    this.router.navigate(["/page-user/main"]);
+    this.router.navigate(["/pages-user/checkout"]);
   }
 
   ngOnDestroy() {
@@ -78,6 +78,8 @@ export class CartComponent implements OnDestroy, OnInit {
         this.items.splice(i, 1);
       }
     }
+    this.itemServ.removeAll(id);
+    this.getItems();
   }
 
   up(product) {

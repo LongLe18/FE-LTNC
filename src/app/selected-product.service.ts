@@ -26,9 +26,18 @@ export class SelectedProductService {
   remove(item) {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].id_Product == item['id_Product']) {
-        console.log('test');
         this._items.splice(i,1);
         break;
+      }
+    }
+    this.syncItems();
+  }
+
+  removeAll(id) {
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].id_Product == id) {
+        this._items.splice(i,1);
+        i--;
       }
     }
     this.syncItems();

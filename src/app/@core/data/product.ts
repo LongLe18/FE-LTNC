@@ -9,4 +9,6 @@ export abstract class ProductData {
   abstract getListProductByBrand(idBrand, pageIndex, pageSize): Observable<any>;
   abstract getListSaleProducts(): Observable<any>;
   abstract getInsurranceProduct(id): Observable<any>;
+
+  abstract checkout(data): Observable<any>;
 }

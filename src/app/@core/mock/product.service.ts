@@ -56,4 +56,11 @@ export class ProductService extends ProductData {
     let url = environment.BASE_URL + `/api/Product/getInsurrenceBySeri/${id}`;
     return this.http.get(url).catch(this.errorHandler);
   }
+
+  checkout(data: any): Observable<any> {
+    let url = environment.BASE_URL + '/api/checkout/checkout';
+    const headers = { 'content-type': 'application/json'}  
+    const body = JSON.stringify(data);
+    return this.http.post(url, body, {'headers':headers}).catch(this.errorHandler);
+  }
 }

@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { InsurranceComponent } from './insurrance/insurrance.component';
 import { DetailProductComponent } from './detailproduct/detailproduct.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckOutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [{
   path: '',
@@ -46,6 +47,11 @@ const routes: Routes = [{
     {
       path: 'cart',
       component: CartComponent
+    }, 
+    {
+      path: 'checkout',
+      component: CheckOutComponent,
+      canActivate: [AuthGuard]
     }
   ],
 }];
