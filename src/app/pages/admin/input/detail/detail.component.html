@@ -1,0 +1,46 @@
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12" style="padding-left: 0;">
+                <h2>CHI TIẾT PHIẾU NHẬP</h2>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background:#319afc; color:white; font-weight:bold">CHI TIẾT PHIẾU NHẬP</div>
+                    <div class="panel-body" style="text-align: center;">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr >
+                                        <th>Mã chi tiết phiếu nhập</th>
+                                        <th>Mã hóa đơn</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá sản phẩm</th>
+                                        <th>Số lương</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let detail of details">
+                                        <td>{{detail.idReceiptDetail}}</td>
+                                        <td>{{detail.idReceipt}}</td>
+                                        <td>{{detail.idProduct}}</td>
+                                        <td>{{detail.nameProduct}}</td>
+                                        <td>{{detail.price}}</td>
+                                        <td>{{detail.quantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,5 +13,12 @@ export abstract class UserData {
   abstract EditUser(user, id);
   abstract getAvatarUser();
   abstract uploadAvatar(image);
-  abstract updateUser(id, data): Observable<any>;
+  abstract updateUser(id, data, confirm): Observable<any>;
+  abstract changeAuth(id, auth): Observable<any>;
+
+  /// account manager
+  abstract getUsers(): Observable<any>;
+  abstract addUser(data): Observable<any>;
+  abstract getUserById(id): Observable<any>;
+  abstract updateUserById(data): Observable<any>;
 }

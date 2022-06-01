@@ -17,9 +17,13 @@ export class NgxVerifyComponent {
     messageError;
     constructor(private service: UserData, private router: Router) {
         this.service.getUser().subscribe(res => {
-            if (res['auth'] == false) {
+            console.log(res);
+            if ( res['roles'].length == 0 || (res['auth'] == false && res['roles'][0].name == 'ROLE_USER') ) {
                 this.router.navigate(['/page-user/main']);
-            } else {
+            } else if ((res['auth'] == false && res['roles'][0].name != 'ROLE_USER')) {
+                this.router.navigate(['/pages-admin/account-manager']);
+            }
+            else {
                 this.role = res['roles'][0].name;
                 this.phone = res['phone'];
                 this.username = res['userName'];

@@ -17,6 +17,11 @@ export class BrandService extends BrandData {
     return Observable.throw(error.error.message || "Server error");
   }
 
+  getBrand(): Observable<any> {
+    let url = environment.BASE_URL + '/api/brand/getBrand';
+    return this.http.get(url).catch(this.errorHandler)   
+  }
+
   getListParentBrand(): Observable<any> {
     let url = environment.BASE_URL + '/api/brand/getParentBrand';
     return this.http.get(url).catch(this.errorHandler)    

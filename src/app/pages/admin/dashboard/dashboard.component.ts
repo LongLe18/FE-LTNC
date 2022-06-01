@@ -1,6 +1,8 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators' ;
+import {  NbToastrService } from '@nebular/theme';
+import { InputData } from '../../../@core/data/input';
 
 interface CardSettings {
   title: string;
@@ -14,7 +16,6 @@ interface CardSettings {
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnDestroy {
-
   private alive = true;
   
   solarValue: number;
@@ -81,8 +82,8 @@ export class DashboardComponent implements OnDestroy {
     'material-light': this.commonStatusCardsSet,
   };
 
-  constructor(private themeService: NbThemeService,
-              ) {
+  constructor(private themeService: NbThemeService, private toastrService: NbToastrService,
+              private inputservice: InputData) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
@@ -93,5 +94,28 @@ export class DashboardComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.alive = false;
+  }
+
+  sums;
+  from = '';
+  to = '';
+  total = 0;
+  dashboard() {
+    if ($("#datepickerFrom").val() == '' || $("#datepickerTo").val() == '') {
+      this.toastrService.show('Bạn chưa chọn ngày tháng thống kê', 'Cảnh báo', { status: 'warning' });
+      return;
+    }
+    var data = {
+      "from": $("#datepickerFrom").val(), 
+      "to": $("#datepickerTo").val()
+    }
+    this.from = String($("#datepickerFrom").val());
+    this.to = String($("#datepickerTo").val());
+    this.inputservice.dashboard(data).subscribe(res => {
+      this.sums = res['data'];
+      this.sums.map(sum => {
+        this.total += sum.price;
+      })
+    })
   }
 }

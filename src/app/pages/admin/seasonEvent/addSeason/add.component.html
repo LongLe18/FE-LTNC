@@ -1,0 +1,36 @@
+<nb-card>
+    <nb-card-header>THÊM MỚI SỰ KIỆN</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+              <label for="inputSeasonName" class="label col-sm-5 col-form-label">Tên sự kiện</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputSeasonName" placeholder="Tên sự kiện" >
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputDateStart" class="label col-sm-5 col-form-label">Ngày bắt đầu</label>
+                <div class="col-sm-7">
+                  <input type="date" nbInput fullWidth id="inputDateStart" placeholder="Ngày bắt đầu" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputDateEnd" class="label col-sm-5 col-form-label">Ngày kết thúc</label>
+                <div class="col-sm-7">
+                  <input type="date" nbInput fullWidth id="inputDateEnd" placeholder="Ngày kết thúc" >
+                </div>
+            </div>
+            <span *ngIf="errMsg != ''" style="text-align: center; color: red;">{{errMsg}}</span>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" nbButton status="danger" (click)="cancel()">Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button nbButton status="success" (click)="submit()">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>

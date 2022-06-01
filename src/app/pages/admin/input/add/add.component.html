@@ -1,0 +1,32 @@
+<nb-card>
+    <nb-card-header>THÊM MỚI PHIẾU NHẬP</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+              <label for="inputCode" class="label col-sm-5 col-form-label">Sản phẩm</label>
+              <div class="col-sm-7">
+                <nb-select id="inputBrand" multiple [(selected)]="selectedItem" style="width: 100%">
+                    <nb-option *ngFor="let product of products" value="{{product.id_Product}}">{{product.name_Product}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputQuantity" class="label col-sm-5 col-form-label">Số lượng</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputQuantity" placeholder="Số lượng: 1,2,3,..." >
+              </div>
+            </div>
+            <span *ngIf="errMsg != ''" style="text-align: center; color: red;">{{errMsg}}</span>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" nbButton status="danger" (click)="cancel()">Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button nbButton status="success" (click)="submit()">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>

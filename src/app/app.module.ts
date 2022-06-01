@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {
   // NbDatepickerModule,
-  // NbDialogModule,
+  NbDialogModule,
   NbChatModule,
   NbMenuModule,
   NbSidebarModule,
@@ -27,7 +27,7 @@ import { SelectedProductService } from './selected-product.service';
   declarations: [AppComponent],
   imports: [
     // NbDatepickerModule.forRoot(),
-    // NbDialogModule.forRoot(),
+    NbDialogModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

@@ -1,0 +1,39 @@
+<nb-card>
+    <nb-card-header>SỬA THÔNG TIN DANH MỤC</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+              <label for="inputDate" class="label col-sm-5 col-form-label">Ngày trả</label>
+              <div class="col-sm-7">
+                <input type="date" nbInput fullWidth id="inputDate" placeholder=">Ngày trả">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputStatus" class="label col-sm-5 col-form-label">Trạng thái</label>
+              <div class="col-sm-7">
+                <nb-select id="inputStatus" [(selected)]="selectedStatus">
+                  <nb-option value="1">Đã nhận</nb-option>
+                  <nb-option value="2">Đang sửa chữa</nb-option>
+                  <nb-option value="3">Đã sửa xong</nb-option>
+                  <nb-option value="4">Đã trả bảo hành</nb-option>
+              </nb-select>
+              </div>
+            </div>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" mat-button mat-dialog-close style="background-color: #ff3d71;
+          border-color: #ff3d71;
+          color: #ffffff;" >Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button mat-button style="background-color: #00d68f;
+          border-color: #00d68f;
+          color: #ffffff;" (click)="submit();">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>
+

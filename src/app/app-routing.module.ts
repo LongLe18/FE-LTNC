@@ -1,11 +1,13 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './@core/auth-guard.service';
 
 export const routes: Routes = [
   {
     path: 'pages-admin',
     loadChildren: () => import('./pages/admin/pages-admin.module')
       .then(m => m.PagesModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'pages-user',

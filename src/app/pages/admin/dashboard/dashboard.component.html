@@ -1,1 +1,68 @@
-<span>Admin page</span>
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>THỐNG KÊ DOANH THU</h2>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row" id="menu1">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading header-table" style="background:#319afc; color:white; font-weight:bold">                
+                        <span >THỐNG KÊ DOANH THU</span>
+                        <span style="margin-left:50%; color:red;text-transform:uppercase;font-weight: bold">
+							<span style="color:white">Tổng doanh thu:</span>  10000
+                        </span>
+                    </div>
+                    <div style="margin-top: 20px; margin-left: 50px">
+                        <span>Từ ngày
+                            <input type="date" id="datepickerFrom" name="date1" style="border-radius:10px;border:2px solid #d9534f; padding-left:10px" value="" data-date-format="mm/dd/yyyy">
+                        </span>
+                        <span style="margin-left:20px" onload="validDate()">Đến ngày
+                            <input type="date" id="datepickerTo" name="date" style="border-radius:10px;border:2px solid #d9534f; padding-left:10px"  value="" data-date-format="mm/dd/yyyy" required>
+                        </span>
+                        <span style="margin-left:20px; padding:30px 0px"> <button class="btnAdd btn btn-danger btn-xs" id="ok" style="padding:8px 10px;border-radius:10px" (click)="dashboard()">THỐNG KÊ</button></span>
+                        <!-- <span><button class="exportToExcel0  btn btn-success" id="export0" style="margin-left:5px;font-size:12px;padding:8px 12px;border-radius:10px"> XUẤT BÁO CÁO </button></span> -->
+                        <br><span class="alert" id="abc" style="font-weight:bold; color:red"></span>
+                                            
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <div class="ttt">
+                                <h5 style="text-align: center; font-weight: bold; text-transform: uppercase; color: #c50000;">
+                                    Thống kê doanh thu từ ngày 
+                                    <span *ngIf="from == ''">...</span>
+                                    <span *ngIf="from != ''">{{from}}</span>
+                                    đến ngày 
+                                    <span *ngIf="to == ''">{{to}}</span>
+                                </h5>
+                            </div>
+                            <table class="table table-striped table-bordered table-hover table2excel hhh0">
+                                <thead >
+                                    <tr style="text-align: center;">
+                                        <th style="text-align:center">Mã Sản Phẩm</th>
+                                        <th style="text-align:center">Tên Sản Phẩm</th> 
+                                        <th style="text-align:center">Số Lượng Đã Bán</th> 
+                                        <th style="text-align:center">Tổng Tiền</th>                                 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="contentPage odd gradeX imgKho" style="text-align: center;" *ngFor="let sum of sums">
+                                        <td>{{sum.idproduct}}</td>
+                                        <td>{{sum.nameproduct}}</td>
+                                        <td>{{sum.quantity}}</td>
+                                        <td>{{sum.price}}</td>
+                                    </tr>                                  
+                                </tbody>
+                            </table>
+                            <span style="text-transform:uppercase; font-weight:bold; float:right">Doanh thu: <span id="total222">{{total}}</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<style>
+  .tab1 {
+    margin-left: 10px;
+    line-height: 2.5rem;
+    font-size: 1.2rem;
+  }
+
+  #avatar {
+    display: none;
+    }
+
+</style>
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-tabset>
+        <nb-tab tabTitle="Tổng quan">
+          <nb-card-header>Thông tin cá nhân</nb-card-header>
+          <nb-card-body>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Họ tên người dùng: </label>
+                  <span class="tab1">{{user?.name}}</span>
+                </div>
+              </div> 
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputAddress" class="label">Địa chỉ: </label>
+                  <span class="tab1">{{user?.address}}</span>
+                </div>
+              </div>              
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputPhone" class="label">Số điện thoại: </label>
+                  <span class="tab1">{{user?.phone}}</span>
+                </div>
+              </div> 
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Tên người dùng: </label>
+                  <span class="tab1">{{user?.userName}}</span>
+                </div>
+              </div>              
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Email: </label>
+                  <span class="tab1">{{user?.email}}</span>
+                </div>
+              </div> 
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Vai trò: </label>
+                  <span class="tab1">{{user?.roles[0].name}}</span>
+                </div>
+              </div>              
+            </div>
+          </nb-card-body>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-tabset>
+        <nb-tab tabTitle="Chỉnh Sửa thông tin">
+          <nb-card-header></nb-card-header>
+          <nb-card-body>
+            <form>
+              <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" nbInput fullWidth id="inputEmail1" placeholder="Email" value="{{user?.email}}" disabled>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputFirstName" class="label col-sm-3 col-form-label">Họ tên người dùng</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="inputFirstName" placeholder="Họ" value="{{user?.name}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputUsername" class="label col-sm-3 col-form-label">Tên tài khoản</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="inputUsername" placeholder="user name" value="{{user?.userName}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputAddress" class="label col-sm-3 col-form-label">Địa chỉ</label>
+                <div class="col-sm-9">
+                  <input type="text" nbInput fullWidth id="inputAddress" placeholder="Địa chỉ" value="{{user?.address}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPhone" class="label col-sm-3 col-form-label">Số điện thoại</label>
+                <div class="col-sm-9">
+                  <input type="tel" nbInput fullWidth id="inputPhone" placeholder="Số điện thoại" value="{{user?.phone}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPass" class="label col-sm-3 col-form-label">Mật khẩu mới: </label>
+                <div class="col-sm-9">
+                  <input type="password" nbInput fullWidth id="inputPass1" placeholder="Mật khẩu" value="" [required]>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPass" class="label col-sm-3 col-form-label">Mật khẩu cũ: </label>
+                <div class="col-sm-9">
+                  <input type="password" nbInput fullWidth id="inputPass2" placeholder="Mật khẩu cũ" value="" [required]>
+                </div>
+              </div>
+              <mat-slide-toggle color="warn" [(ngModel)]="isChecked" (change)="test()" [ngModelOptions]="{standalone: true}">
+                Xác thực 2 lớp
+              </mat-slide-toggle>
+              <div class="form-group row">
+                <div class="offset-sm-3 col-sm-9">
+                  <button type="submit" nbButton status="primary" (click)="onEditUser($event);">Cập nhật</button>
+                </div>
+              </div>
+            </form>
+          </nb-card-body>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+</div>

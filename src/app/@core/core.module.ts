@@ -19,12 +19,18 @@ import { CategoryData } from './data/category';
 import { BrandData } from './data/brand';
 import { ProductData } from './data/product';
 import { WarrantlyData } from './data/warrantly';
+import { SeasonData } from './data/season';
+import { InvoiceData } from './data/invoice';
+import { InputData } from './data/input';
 
 import { UserService } from './mock/users.service';
 import { CategoryService } from './mock/category.service';
 import { BrandService } from './mock/brand.service';
 import { ProductService } from './mock/product.service';
 import { WarrantlyService } from './mock/warrantly.service';
+import { SeasonService }  from './mock/season.service';
+import { InvoiceService } from './mock/invoice.service';
+import { InputService } from './mock/input.service';
 
 import { TokenInterceptorService } from './mock/auth.service';
 import { RippleService } from './utils/ripple.service';
@@ -66,6 +72,9 @@ const DATA_SERVICES = [
   { provide: BrandData, useClass: BrandService },
   { provide: ProductData, useClass: ProductService },
   { provide: WarrantlyData, useClass: WarrantlyService },
+  { provide: SeasonData, useClass: SeasonService },
+  { provide: InvoiceData, useClass: InvoiceService },
+  { provide: InputData, useClass: InputService },
 ];
 
 export const NB_CORE_PROVIDERS = [

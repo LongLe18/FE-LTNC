@@ -11,4 +11,10 @@ export abstract class ProductData {
   abstract getInsurranceProduct(id): Observable<any>;
 
   abstract checkout(data): Observable<any>;
+
+  abstract addProduct(data): Observable<any>;
+  abstract deleteProduct(id): Observable<any>;
+  abstract editProduct(data, id): Observable<any>;
+  // get season
+  abstract getSeason(): Observable<any>;
 }

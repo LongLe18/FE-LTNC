@@ -1,0 +1,40 @@
+<nb-card>
+    <nb-card-header>SỬA THÔNG TIN SỰ KIỆN</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+                <label for="inputSeasonName" class="label col-sm-5 col-form-label">Tên sự kiện</label>
+                <div class="col-sm-7">
+                  <input type="text" nbInput fullWidth id="inputSeasonName" placeholder="Tên sự kiện" value="{{season?.name_Season}}">
+                </div>
+              </div>
+              <div class="form-group row">
+                  <label for="inputDateStart" class="label col-sm-5 col-form-label">Ngày bắt đầu</label>
+                  <div class="col-sm-7">
+                    <input type="date" nbInput fullWidth id="inputDateStart" placeholder="Ngày bắt đầu" value="{{season?.dateStart}}">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="inputDateEnd" class="label col-sm-5 col-form-label">Ngày kết thúc</label>
+                  <div class="col-sm-7">
+                    <input type="date" nbInput fullWidth id="inputDateEnd" placeholder="Ngày kết thúc" value="{{season?.dateEnd}}">
+                  </div>
+              </div>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" mat-button mat-dialog-close style="background-color: #ff3d71;
+          border-color: #ff3d71;
+          color: #ffffff;" >Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button mat-button style="background-color: #00d68f;
+          border-color: #00d68f;
+          color: #ffffff;" (click)="submit();">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>
+

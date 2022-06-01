@@ -1,0 +1,30 @@
+<nb-card>
+    <nb-card-header>THÊM MỚI DANH MỤC</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+              <label for="inputCode" class="label col-sm-5 col-form-label">Mã danh mục</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputCode" placeholder="Mã danh mục">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputCateName" class="label col-sm-5 col-form-label">Tên danh mục</label>
+              <div class="col-sm-7">
+                <input type="email" nbInput fullWidth id="inputCateName" placeholder="Tên danh mục" >
+              </div>
+            </div>
+            <span *ngIf="errMsg != ''" style="text-align: center; color: red;">{{errMsg}}</span>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" nbButton status="danger" (click)="cancel()">Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button nbButton status="success" (click)="submit()">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>

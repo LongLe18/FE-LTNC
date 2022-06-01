@@ -1,0 +1,63 @@
+<nb-card>
+    <nb-card-header>SỬA THÔNG TIN NGƯỜI DÙNG</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+              <label for="inputUserName" class="label col-sm-5 col-form-label">Tên người dùng</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputUserName" placeholder="Tên người dùng" value="{{user?.userName}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="label col-sm-5 col-form-label">Email</label>
+              <div class="col-sm-7">
+                <input type="email" nbInput fullWidth id="inputDescription" placeholder="Email" value="{{user?.email}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputName" class="label col-sm-5 col-form-label">Họ tên</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputName" placeholder="Họ tên" value="{{user?.name}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputAddress" class="label col-sm-5 col-form-label">Địa chỉ</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputAddress" placeholder="Địa chỉ" value="{{user?.address}}">
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPhone" class="label col-sm-5 col-form-label">Số điện thoại</label>
+                <div class="col-sm-7">
+                  <input type="tel" nbInput fullWidth id="inputPhone" placeholder="Số điện thoại" value="{{user?.phone}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPosition" class="label col-sm-5 col-form-label">Chức vụ</label>
+                <div class="col-sm-7">
+                  <nb-select [(selected)]="selectedItem" id="inputPosition">
+                  <nb-option value="1">Admin</nb-option>
+                  <nb-option value="2">Khách Hàng</nb-option>
+                  <nb-option value="3">Nhân viên bán hàng</nb-option>
+                  <nb-option value="4">Nhân viên kế toán</nb-option>
+                </nb-select> 
+                </div>
+            </div>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" mat-button mat-dialog-close style="background-color: #ff3d71;
+          border-color: #ff3d71;
+          color: #ffffff;" >Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button mat-button style="background-color: #00d68f;
+          border-color: #00d68f;
+          color: #ffffff;" (click)="submit();">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>
+

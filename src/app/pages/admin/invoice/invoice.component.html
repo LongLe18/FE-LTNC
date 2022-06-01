@@ -1,0 +1,62 @@
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12" style="padding-left: 0;">
+                <h2>QUẢN LÝ HÓA ĐƠN</h2>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background:#319afc; color:white; font-weight:bold">QUẢN LÝ HÓA ĐƠN</div>
+                    <div class="panel-body" style="text-align: center;">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr >
+                                        <th>Mã Hóa Đơn</th>
+                                        <th>Khách Hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa Chỉ Giao Hàng</th>
+                                        <th>Phương Thức Thanh Toán</th>
+                                        <th>Tổng tiền hóa đơn</th>
+                                        <th>Ngày Mua Hàng</th>
+                                        <th>Ngày Giao Dự Kiến</th>
+                                        <th>Trạng Thái Đơn Hàng</th>
+                                        <th>Chức Năng</th>
+                                        <th>Xem chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let invoice of invoices">
+                                        <td>{{invoice.idinvoice}}</td>
+                                        <td>{{invoice.userName}}</td>
+                                        <td>{{invoice.phone}}</td>
+                                        <td>{{invoice.address}}</td>
+                                        <td>{{invoice.paymentMethods}}</td>
+                                        <td>{{invoice.totalInvoice}}</td>
+                                        <td >{{invoice.purchaseDate}}</td>
+                                        <td *ngIf="invoice.statusOrder != 3">sau 3 ngày</td>
+                                        <td *ngIf="invoice.statusOrder == 3" style="color: red" >Ngày hủy {{invoice.purchaseDate}}</td>
+                                        <td *ngIf="invoice.statusOrder == 1 " class="btn btn-warning btn-xs">Đã Thanh Toán</td>
+                                        <td *ngIf="invoice.statusOrder == 2 " class="btn btn-danger btn-xs">Chờ Xử Lý</td>
+                                        <td *ngIf="invoice.statusOrder == 3 " class="btn btn-success btn-xs">Đã hủy</td>
+                                        <td *ngIf="invoice.statusOrder == 4 " class="btn btn-primary btn-xs">Đang giao</td>
+                                        <td><button class="btn btn-primary" (click)="openEditInvoice(invoice.idinvoice)">Xử lý</button></td>
+                                        <td>
+                                            <button class="btn btn-danger" (click)="openDetail(invoice.idinvoice)" style="margin-left: 10px">Xem</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

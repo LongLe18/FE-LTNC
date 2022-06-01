@@ -1,0 +1,28 @@
+<nb-card>
+    <nb-card-header>SỬA THÔNG TIN DANH MỤC</nb-card-header>
+    <nb-card-body>
+        <form style="width: 500px"> 
+            <div class="form-group row">
+              <label for="inputCateName" class="label col-sm-5 col-form-label">Tên danh mục</label>
+              <div class="col-sm-7">
+                <input type="text" nbInput fullWidth id="inputCateName" placeholder="Tên danh mục" value="{{data?.name}}">
+              </div>
+            </div>
+          </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-6 center">
+          <button class="cancel" mat-button mat-dialog-close style="background-color: #ff3d71;
+          border-color: #ff3d71;
+          color: #ffffff;" >Hủy</button>
+        </div>
+        <div class="col-sm-6 center">
+          <button mat-button style="background-color: #00d68f;
+          border-color: #00d68f;
+          color: #ffffff;" (click)="submit();">Lưu</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>
+

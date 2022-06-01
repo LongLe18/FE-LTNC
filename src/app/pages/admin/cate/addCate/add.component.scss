@@ -1,0 +1,16 @@
+@import '../../../../@theme/styles/themes';
+@include nb-install-component() {
+    nb-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: none;
+      padding-top: nb-theme(card-header-with-select-padding-top);
+      padding-bottom: nb-theme(card-header-with-select-padding-bottom);
+    }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}

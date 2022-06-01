@@ -50,10 +50,14 @@ export class ProfileComponent implements OnDestroy, OnInit {
   }
 
   submit(id) {
+    if ($("#exampleInputPassword2").val() == '') {
+      this.toastrService.show('Bận chưa nhập mật khẩu xác thực', 'Cảnh báo', { status: 'warning' });
+      return;
+    }
     var data = {    
       "userId": id,
       "userName": this.userName,
-      "password": this.password,
+      "password": $("#exampleInputPassword1").val(),
       "auth": false,
       "email": this.email,
       "name": this.name,
@@ -63,7 +67,7 @@ export class ProfileComponent implements OnDestroy, OnInit {
       "status": 0,
       "roles": this.roles,
     }
-    this.serviceUser.updateUser(id, data).subscribe(res => {
+    this.serviceUser.updateUser(id, data, $("#exampleInputPassword2").val()).subscribe(res => {
       if (res["status"] == "SUCCESS") {
         this.toastrService.show('Cập nhật thông tin thành công', 'Thành công', { status: 'success' })
         this.router.navigate(["/page-user/main"]);

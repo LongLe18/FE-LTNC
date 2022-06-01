@@ -6,6 +6,7 @@ import { LayoutService } from '../../../@core/utils';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -59,6 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
+    private router: Router
   ) {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
@@ -85,7 +87,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         filter(({ tag }) => tag === 'my-context-menu'),
         map(({ item: { title } }) => title),
       )
-      .subscribe(title => alert(`${title} was clicked!`));
+      .subscribe(title => {
+        if (title === "Hồ sơ") {
+          this.router.navigate(["/pages-admin/profile/user"]);
+        } else if (title == "Đăng xuất") {
+          this.router.navigate(["/auth/logout"]);
+        }
+      });
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()

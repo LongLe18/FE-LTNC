@@ -80,8 +80,37 @@ export class UserService extends UserData {
     return this.http.post(url, formData)  
   }
   
-  updateUser(id: any, data: any): Observable<any> {
-    let url = environment.BASE_URL + `/api/auth/user/${id}`;
+  updateUser(id: any, data: any, confirm): Observable<any> {
+    let url = environment.BASE_URL + `/api/auth/user/${id}/${confirm}`;
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const body = JSON.stringify(data);
+    return this.http.put(url, body, {headers: headers}).catch(this.errorHandler);
+  }
+
+  changeAuth(id: any, auth: String): Observable<any> {
+    let url = environment.BASE_URL + `/api/auth/user/${id}/${auth}`;
+    return this.http.get(url).catch(this.errorHandler);     
+  }
+
+  getUsers(): Observable<any> {
+    let url = environment.BASE_URL + `/api/user/getUsers`;
+    return this.http.get(url).catch(this.errorHandler);     
+  }
+
+  addUser(data: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/user/addUser`;
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const body = JSON.stringify(data);
+    return this.http.post(url, body, {headers: headers}).catch(this.errorHandler);
+  }
+
+  getUserById(id: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/user/info?id=${id}`;
+    return this.http.get(url).catch(this.errorHandler);     
+  }
+
+  updateUserById(data: any): Observable<any> {
+    let url = environment.BASE_URL + '/api/user/updateUser';
     const headers = new HttpHeaders().set('content-type', 'application/json');
     const body = JSON.stringify(data);
     return this.http.put(url, body, {headers: headers}).catch(this.errorHandler);

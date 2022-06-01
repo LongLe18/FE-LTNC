@@ -2,7 +2,7 @@ import { of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ProductData } from '../data/product';
 
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
@@ -62,5 +62,29 @@ export class ProductService extends ProductData {
     const headers = { 'content-type': 'application/json'}  
     const body = JSON.stringify(data);
     return this.http.post(url, body, {'headers':headers}).catch(this.errorHandler);
+  }
+
+  addProduct(data: any): Observable<any> {
+    let url = environment.BASE_URL + '/api/Product/AddProduct';
+    const headers = { 'content-type': 'application/json'}  
+    const body = JSON.stringify(data);
+    return this.http.post(url, body, {'headers':headers}).catch(this.errorHandler);
+  }
+
+  getSeason(): Observable<any> {
+    let url = environment.BASE_URL + '/api/Season/getSeason';
+    return this.http.get(url).catch(this.errorHandler);
+  }
+
+  deleteProduct(id: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/Delete?id=${id}`;
+    return this.http.delete(url).catch(this.errorHandler);
+  }
+
+  editProduct(data: any, id: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/ChangeProduct?id=${id}`;
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const body = JSON.stringify(data);
+    return this.http.put(url, body, {headers: headers}).catch(this.errorHandler);
   }
 }

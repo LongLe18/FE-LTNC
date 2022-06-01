@@ -3,20 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { ECommerceComponent } from './e-commerce/e-commerce.component';
-// import { SensorComponent } from './sensor/sensor.component';
-// import { RuleComponent } from './rule/rule.component';
-// import { BlacklistComponent } from './blacklist/blacklist.component';
-// import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { AuthGuard } from '../../@core/auth-guard.service';
-// import { AddRuleComponent } from './addrule/addrule.component';
-// import { SettingEmailComponent } from './setting-email/setting-email.component';
-// import { CNCCardComponent } from './cnc/cnc.component';
-// import { LogComponent } from './clogs/log.component';
-// import { SettingBackupComponent } from './setting-backup/setting-backup.component';
-// import { BackupComponent } from './backup/backup.component';
-// import { AIComponent } from './ai/ai.component';
-// import { TrackNetworkComponent } from './trackingNetwork/track.component';
+import { AccountComponent } from './account/account.component';
+import { CateComponent } from './cate/cate.component';
+import { ProductComponent } from './product/product.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { EventComponent } from './seasonEvent/event.component';
+import { WaranrlyComponent } from './warrantly/warrantly.component';
+import { WarehouseComponent } from './warehouse/warehouse.component';
+import { InputComponent } from './input/input.component';
 
 const routes: Routes = [{
   path: '',
@@ -27,102 +22,56 @@ const routes: Routes = [{
       component: DashboardComponent,
       canActivate: [AuthGuard],
     },
-  //   {
-  //     path: 'tracking-network',
-  //     component: DashboardComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'sensor',
-  //     component: SensorComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path:'rule',
-  //     component: RuleComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'blacklist',
-  //     component: BlacklistComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'ai',
-  //     component: AIComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'trackNetwork',
-  //     component: TrackNetworkComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'addrule',
-  //     component: AddRuleComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'settingrule',
-  //     component: SettingEmailComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'cnc-detection',
-  //     component: CNCCardComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'log',
-  //     component: LogComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'setting-backup',
-  //     component: SettingBackupComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'backup',
-  //     component: BackupComponent,
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'maps',
-  //     loadChildren: () => import('./maps/maps.module')
-  //       .then(m => m.MapsModule),
-  //   },
-  //   {
-  //     path: 'user',
-  //     loadChildren: () => import('./account/account.module')
-  //       .then(m => m.TablesModule),
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'profile',
-  //     loadChildren: () => import('./profile/profile.module')
-  //       .then(m => m.ProfileModule),
-  //     canActivate: [AuthGuard],
-  //   },{
-  //     path: 'setting',
-  //     loadChildren: () => import ('./setting-threat/setting-threat.module')
-  //       .then(m => m.SettingThreatModule),
-  //     canActivate: [AuthGuard],
-  //   },
-  //   {
-  //     path: 'miscellaneous',
-  //     loadChildren: () => import('./miscellaneous/miscellaneous.module')
-  //       .then(m => m.MiscellaneousModule),
-  //   },
-  //   {
-  //     path: '',
-  //     redirectTo: 'dashboard',
-  //     pathMatch: 'full',
-  //   },
-  //   {
-  //     path: '**',
-  //     component: NotFoundComponent,
-  //   },
+    {
+      path: 'account-manager',
+      component: AccountComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'category',
+      component: CateComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'product',
+      component: ProductComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'invoice',
+      component: InvoiceComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'insurrance',
+      component: WaranrlyComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'event',
+      component: EventComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'ware',
+      component: WarehouseComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'input',
+      component: InputComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'profile',
+      loadChildren: () => import('./profile/profile.module')
+        .then(m => m.ProfileModule),
+      canActivate: [AuthGuard],
+    },
+    {
+      path: '**',
+      redirectTo: 'account-manager',
+    },
   ],
 }];
 
