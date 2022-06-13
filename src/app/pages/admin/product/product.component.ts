@@ -87,7 +87,7 @@ export class ProductComponent implements OnInit {
             error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' })
           ) 
         }
-      }, error => this.toastrService.show('Xóa sản phẩm không thành công ' + error, 'Lỗi', { status: 'danger' }))
+      }, error => this.toastrService.show('Xóa sản phẩm không thành công ' + 'Sản phẩm này liên quan tới hóa đơn khác', 'Lỗi', { status: 'danger' }))
     }
   }
 }

@@ -27,6 +27,8 @@ export class EditProductComponent implements OnDestroy, OnInit {
   user;
   errMsg;
   product;
+  file;
+
   ngOnInit(): void {
     this.serviceProduct.getSeason().subscribe(res => {
         this.seasons = res['data'];
@@ -52,6 +54,10 @@ export class EditProductComponent implements OnDestroy, OnInit {
     })
   }
   
+  onFilechange(event: any) {
+    this.file = event.target.files[0];
+  }
+
   submit() {
     if ($("#inputProductName").val() == '' || $("#inputImage").val() == '' || $("#inputQuantity").val() == '' ||
         $("#inputPrice").val() == '' || $("#inputDes").val() == '' || $("#inputSale").val() == '' || $("#inputWarrantly").val() == '' ||
@@ -61,7 +67,7 @@ export class EditProductComponent implements OnDestroy, OnInit {
     }
     var data = {
         "name_Product": $("#inputProductName").val(),
-        "image": $("#inputImage").val(),
+        "image": "assets/images/sanpham/" +  this.file.name,
         "quantity": $("#inputQuantity").val(),
         "describe": $("#inputDes").val(),
         "price": $("#inputPrice").val(),

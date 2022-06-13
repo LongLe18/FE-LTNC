@@ -11,7 +11,7 @@
             <div class="form-group row">
               <label for="inputImage" class="label col-sm-5 col-form-label">Url hình ảnh</label>
               <div class="col-sm-7">
-                <input type="text" nbInput fullWidth id="inputImage" placeholder="Url hình ảnh" value="assets/images/sanpham/giadinh1.jpg" value="{{product?.image}}">
+                <input type="file" nbInput fullWidth id="inputImage" placeholder="Url hình ảnh" (change)="onFilechange($event)" value="{{product?.image}}">
               </div>
             </div>
             <div class="form-group row">
