@@ -4,6 +4,7 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { InvoiceData } from '../../../@core/data/invoice';
 import { DetailInvoiceComponent } from './detail/detail.component';
 import { EditInvoiceComponent } from './edit/edit.component';
+import { ExportService } from '../../../@core/mock/export.service';
 
 @Component({
     selector: 'ngx-invoice',
@@ -12,7 +13,7 @@ import { EditInvoiceComponent } from './edit/edit.component';
   })
 export class InvoiceComponent implements OnInit {
   constructor(private serviceInvoice: InvoiceData, private toastrService: NbToastrService,
-    private dialogService: NbDialogService, private dialog: MatDialog) {
+    private dialogService: NbDialogService, private dialog: MatDialog, private exportService: ExportService) {
 
   }
 
@@ -44,5 +45,9 @@ export class InvoiceComponent implements OnInit {
 
   openDetail(id) {
     const dialogRef = this.dialog.open(DetailInvoiceComponent, { data: { id: id } });
+  }
+
+  export() {
+    this.exportService.exportExcel(this.invoices, 'ThongKeHoaDon');
   }
 }

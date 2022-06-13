@@ -51,4 +51,9 @@ export class InputService extends InputData {
     const body = JSON.stringify(data);
     return this.http.post(url, body, {headers: headers}).catch(this.errorHandler)
   }
+
+  dashboard2(id: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Receipt/dashboard2?idcate=${id}`;
+    return this.http.get(url).catch(this.errorHandler);
+  }
 }

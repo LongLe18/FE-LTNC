@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
@@ -29,6 +30,7 @@ export class CheckOutComponent implements OnDestroy, OnInit {
   DateDelivery;
   method = 'Thanh toán khi giao hàng';
   totalPrice = 0;
+  totalPricevnd = '';
 
   ngOnInit() {
     this.serviceCategory.getListParentCategory().subscribe(res => {
@@ -72,7 +74,8 @@ export class CheckOutComponent implements OnDestroy, OnInit {
           quantity: listItems[i]['quantity'],
           sale: listItems[i]['sale'],
           warranty_Period: listItems[i]['warranty_Period'],
-          count: Count      
+          count: Count,
+          total: ((listItems[i]['pricevnd'] - listItems[i].sale) * Count).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
       })
       this.itemsCheckout.push({
         idProduct: listItems[i]['id_Product'],
@@ -80,7 +83,8 @@ export class CheckOutComponent implements OnDestroy, OnInit {
         quantity: Count,      
         sale: listItems[i]['sale'],
     })
-      this.totalPrice = this.totalPrice + (Number(listItems[i]['price']) - Number(listItems[i]['sale'])) * Count
+      this.totalPrice = this.totalPrice + (Number(listItems[i]['pricevnd']) - Number(listItems[i]['sale'])) * Count
+      this.totalPricevnd = (this.totalPrice + (Number(listItems[i]['pricevnd']) - Number(listItems[i]['sale'])) * Count).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
     }
     console.log(this.items);
   }

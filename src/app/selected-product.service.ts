@@ -9,13 +9,13 @@ export class SelectedProductService {
     id_Brand: String
     id_Category: String
     id_Product: String
-    id_Season: Number
+    id_Season: number
     image: String
     name_Product: String
-    price: Number
-    quantity: Number
-    sale: Number
-    warranty_Period: Number
+    price: number
+    quantity: number
+    sale: number
+    warranty_Period: number
   }[] = [];
 
   constructor() {

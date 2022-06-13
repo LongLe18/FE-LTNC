@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from '../../@core/auth-guard.service';
 import { AccountComponent } from './account/account.component';
 import { CateComponent } from './cate/cate.component';
 import { ProductComponent } from './product/product.component';
@@ -20,53 +19,43 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'account-manager',
       component: AccountComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'category',
       component: CateComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'product',
       component: ProductComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'invoice',
       component: InvoiceComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'insurrance',
       component: WaranrlyComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'event',
       component: EventComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'ware',
       component: WarehouseComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'input',
       component: InputComponent,
-      canActivate: [AuthGuard],
     },
     {
       path: 'profile',
       loadChildren: () => import('./profile/profile.module')
         .then(m => m.ProfileModule),
-      canActivate: [AuthGuard],
     },
     {
       path: '**',

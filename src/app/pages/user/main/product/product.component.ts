@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ProductData } from '../../../../@core/data/product';
 import { SelectedProductService } from '../../../../selected-product.service';
+import { SearchProductComponent } from '../search/search.component';
 
 interface Product {
     describe: String
@@ -24,7 +25,8 @@ interface Product {
   templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit, OnChanges {
-  constructor(private serviceProduct: ProductData, private toastrService: NbToastrService, private itemServ: SelectedProductService) {  }
+  constructor(private serviceProduct: ProductData, private toastrService: NbToastrService, private itemServ: SelectedProductService,
+    private dialogService: NbDialogService) {  }
   
 
   length;
@@ -36,19 +38,36 @@ export class ProductComponent implements OnInit, OnChanges {
   @Input() idCate = '';
   @Input() idBrand = '';
 
-  products: Product;
+  products = [];
 
-  productsByCate = '';
-  productsByBrand = '';
-  saleProducts;
-  salefastlyProducts;
+  productsByCate = [];
+  productsByBrand = [];
+  saleProducts = [];
+  salefastlyProducts = [];
 
+  searchProducts = [];
   ngOnChanges(changes: SimpleChanges) {
     if (changes["idCate"] != undefined) {
       this.serviceProduct.getListProductByCategory(changes["idCate"].currentValue, 0, 10).subscribe(res => {
         if (res["status"] == "SUCCESS") {
           // this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
-          this.productsByCate = res["data"];
+          res['data'].map(product => {
+            this.productsByCate.push({
+              sale: product.sale,
+              id_Category: product.id_Category,
+              describe: product.describe,
+              id_Brand: product.id_Brand,
+              id_Product: product.id_Product,
+              id_Season: product.id_Season,
+              image: product.image,
+              name_Product: product.name_Product,
+              price: product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+              pricevnd: product.price,
+              pricesale: (product.price - product.sale).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+              quantity: product.quantity,
+              warranty_Period: product.warranty_Period,
+            })
+          })
         }
       }, error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' }))
     }
@@ -56,13 +75,54 @@ export class ProductComponent implements OnInit, OnChanges {
       this.serviceProduct.getListProductByBrand(changes["idBrand"].currentValue, 0, 10).subscribe(res => {
         if (res["status"] == "SUCCESS") {
           // this.toastrService.show('Lấy sản phẩm thành công', 'Thành công', { status: 'success' });
-          this.productsByBrand = res["data"];
+          res['data'].map(product => {
+            this.productsByBrand.push({
+              sale: product.sale,
+              id_Category: product.id_Category,
+              describe: product.describe,
+              id_Brand: product.id_Brand,
+              id_Product: product.id_Product,
+              id_Season: product.id_Season,
+              image: product.image,
+              name_Product: product.name_Product,
+              price: product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+              pricevnd: product.price,
+              pricesale: (product.price - product.sale).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+              quantity: product.quantity,
+              warranty_Period: product.warranty_Period,
+            })
+          })
         }
       }, error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' }))
     }
 
   }
   
+  search() {
+    this.dialogService.open(SearchProductComponent)
+      .onClose.subscribe(res => {
+        this.serviceProduct.search(res['id_Brand'], res['id_Category'], res['id_Season'], res['describe']).subscribe(res => {
+          res['data'].map(product => {
+            this.searchProducts.push({
+              sale: product.sale,
+              id_Category: product.id_Category,
+              describe: product.describe,
+              id_Brand: product.id_Brand,
+              id_Product: product.id_Product,
+              id_Season: product.id_Season,
+              image: product.image,
+              name_Product: product.name_Product,
+              price: product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+              pricevnd: product.price,
+              pricesale: (product.price - product.sale).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+              quantity: product.quantity,
+              warranty_Period: product.warranty_Period,
+            })
+          })
+        })
+      }, error => this.toastrService.show('Tìm kiếm sản phẩm không thành công', 'Lỗi', { status: 'danger' }));
+  }
+
   pageEvents(event: any) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
@@ -81,19 +141,63 @@ export class ProductComponent implements OnInit, OnChanges {
     })
 
     this.serviceProduct.getListProductByPage(this.pageIndex, this.pageSize).subscribe(res => {
-      this.products = res['data'];
+      res['data'].map(product => {
+        this.products.push({
+          sale: product.sale,
+          id_Category: product.id_Category,
+          describe: product.describe,
+          id_Brand: product.id_Brand,
+          id_Product: product.id_Product,
+          id_Season: product.id_Season,
+          image: product.image,
+          name_Product: product.name_Product,
+          price: product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+          pricevnd: product.price,
+          pricesale: (product.price - product.sale).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+          quantity: product.quantity,
+          warranty_Period: product.warranty_Period,
+        })
+      })
     }, 
       error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' })
     ) 
 
     this.serviceProduct.getListSaleProducts().subscribe(res => {
-      this.saleProducts = res['data'];
+      res['data'].map(product => {
+        this.saleProducts.push({
+          sale: product.sale,
+          id_Category: product.id_Category,
+          describe: product.describe,
+          id_Brand: product.id_Brand,
+          id_Product: product.id_Product,
+          id_Season: product.id_Season,
+          image: product.image,
+          name_Product: product.name_Product,
+          price: product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+          pricevnd: product.price,
+          pricesale: (product.price - product.sale).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+          quantity: product.quantity,
+          warranty_Period: product.warranty_Period,
+        })
+      })
     }, 
       error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' })
     )
 
-    this.serviceProduct.getListProductByPage(this.pageIndex + 1, this.pageSize - 5).subscribe(res => {
-      this.salefastlyProducts = res['data'];
+    this.serviceProduct.getListProductFastly().subscribe(res => {
+      res['data'].map(product => {
+        this.salefastlyProducts.push({
+          image: product.image,
+          salednumber: product.numberSaled,
+          sale: product.sale,
+          id_Product: product.id_Product,
+          name_Product: product.name_Product,
+          price: product.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+          pricevnd: product.price,
+          pricesale: (product.price - product.sale).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}),
+          quantity: product.quantity,
+        })
+      })
     }, 
       error => this.toastrService.show('Lấy sản phẩm không thành công', 'Lỗi', { status: 'danger' })
     )

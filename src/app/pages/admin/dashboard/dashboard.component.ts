@@ -3,6 +3,8 @@ import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators' ;
 import {  NbToastrService } from '@nebular/theme';
 import { InputData } from '../../../@core/data/input';
+import { CategoryData } from '../../../@core/data/category';
+import { ExportService } from '../../../@core/mock/export.service';
 
 interface CardSettings {
   title: string;
@@ -83,23 +85,39 @@ export class DashboardComponent implements OnDestroy {
   };
 
   constructor(private themeService: NbThemeService, private toastrService: NbToastrService,
-              private inputservice: InputData) {
+              private inputservice: InputData, private serviceCategory: CategoryData,
+              private exportService: ExportService) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
         this.statusCards = this.statusCardsByThemes[theme.name];
     });
-
+    this.getCates();
   }
 
   ngOnDestroy() {
     this.alive = false;
   }
 
-  sums;
+  sums = [];
+  sums2 = [];
   from = '';
   to = '';
   total = 0;
+  total2 = 0;
+  listCates;
+  selectedCate = 'DCNB';
+
+  getCates() {
+    this.serviceCategory.getListParentCategory().subscribe(res => {
+      if (res.status == "SUCCESS") {
+        this.serviceCategory.getListSubCategory(res['data'][0]['id_Category']).subscribe(response => {
+          this.listCates = response['data'];
+        })
+      }
+    });
+  }
+
   dashboard() {
     if ($("#datepickerFrom").val() == '' || $("#datepickerTo").val() == '') {
       this.toastrService.show('Bạn chưa chọn ngày tháng thống kê', 'Cảnh báo', { status: 'warning' });
@@ -117,5 +135,33 @@ export class DashboardComponent implements OnDestroy {
         this.total += sum.price;
       })
     })
+  }
+
+  onChange(e) {
+    this.inputservice.dashboard2(e).subscribe(res => {
+      console.log(res['data']);
+      this.sums2 = res['data'];
+      this.sums2.map(sum => {
+        this.total2 += sum.price;
+      })
+    })
+  }
+
+  export() {
+    if (this.sums.length > 0) {
+      this.exportService.exportExcel(this.sums, 'ThongKeDT');
+    }
+    else {
+      this.toastrService.show('Bạn chưa chọn ngày tháng thống kê', 'Cảnh báo', { status: 'warning' });
+    }
+  }
+
+  export2() {
+    if (this.sums2.length > 0) {
+      this.exportService.exportExcel(this.sums2, 'ThongKeDT');
+    }
+    else {
+      this.toastrService.show('Bạn chưa chọn loại thống kê', 'Cảnh báo', { status: 'warning' });
+    }
   }
 }

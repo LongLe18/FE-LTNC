@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ProductData } from '../../../@core/data/product';
 import { MatPaginator } from '@angular/material/paginator';
+import { ExportService } from '../../../@core/mock/export.service';
 
 @Component({
     selector: 'ngx-warehouse',
@@ -10,7 +11,7 @@ import { MatPaginator } from '@angular/material/paginator';
   })
 export class WarehouseComponent implements OnInit {
   constructor(private serviceProduct: ProductData, private toastrService: NbToastrService,
-    private dialogService: NbDialogService) {
+    private exportService: ExportService) {
 
   }
 
@@ -53,4 +54,7 @@ export class WarehouseComponent implements OnInit {
     ) 
   }
 
+  export() {
+    this.exportService.exportExcel(this.products, 'ThongKeTonKho');
+  }
 }

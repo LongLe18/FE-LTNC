@@ -8,4 +8,5 @@ export abstract class InputData {
     abstract deleteReceipt(idInvoice): Observable<any>;
 
     abstract dashboard(data): Observable<any>;
+    abstract dashboard2(id): Observable<any>;
 }

@@ -9,6 +9,7 @@ export abstract class ProductData {
   abstract getListProductByBrand(idBrand, pageIndex, pageSize): Observable<any>;
   abstract getListSaleProducts(): Observable<any>;
   abstract getInsurranceProduct(id): Observable<any>;
+  abstract getListProductFastly(): Observable<any>;
 
   abstract checkout(data): Observable<any>;
 
@@ -17,4 +18,6 @@ export abstract class ProductData {
   abstract editProduct(data, id): Observable<any>;
   // get season
   abstract getSeason(): Observable<any>;
+
+  abstract search(idBrand, idCate, idSeason, describe): Observable<any>;
 }

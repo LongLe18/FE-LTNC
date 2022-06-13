@@ -46,6 +46,7 @@ export class CartComponent implements OnDestroy, OnInit {
           j--;
         }
       }
+      
       this.items.push({
           describe: listItems[i]['describe'],
           id_Brand: listItems[i]['id_Brand'],
@@ -58,7 +59,8 @@ export class CartComponent implements OnDestroy, OnInit {
           quantity: listItems[i]['quantity'],
           sale: listItems[i]['sale'],
           warranty_Period: listItems[i]['warranty_Period'],
-          count: Count      
+          count: Count,
+          total: ((listItems[i]['pricevnd'] - listItems[i].sale) * Count).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
       })
     }
     console.log(this.items);

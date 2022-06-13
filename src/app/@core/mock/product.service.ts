@@ -87,4 +87,14 @@ export class ProductService extends ProductData {
     const body = JSON.stringify(data);
     return this.http.put(url, body, {headers: headers}).catch(this.errorHandler);
   }
+
+  search(idBrand: any, idCate: any, idSeason: any, describe: any): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/search?idcate=${idCate}&idseason=${idSeason}&describe=${describe}&idbrand=${idBrand}`;
+    return this.http.get(url).catch(this.errorHandler);
+  }
+
+  getListProductFastly(): Observable<any> {
+    let url = environment.BASE_URL + `/api/Product/getProductFastly`;
+    return this.http.get(url).catch(this.errorHandler);
+  }
 }

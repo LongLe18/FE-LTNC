@@ -84,7 +84,7 @@
                     </div>
                 </td>
                 <td class="cart_total">
-                    <p class="cart_total_price">{{(item.price - item.sale) * item.count}} VNĐ</p>
+                    <p class="cart_total_price">{{item.total}}</p>
                 </td>
                 <td class="cart_delete"><button class="cart_quantity_delete" (click)="remove(item.id_Product)" style="background-color: transparent;"><i class="fa fa-times"></i></button></td>
             </tr>
@@ -102,7 +102,7 @@
 						<form action="" method="post">
 						  <p style="margin-top: 20px; text-transform:uppercase">Tổng tiền</p>
 							<span style="color: red;"></span>
-							<input type="text" name="Total_Invoice" value="{{totalPrice}}" style="color:red; font-weight:bold; background:#DDDDDD;font-size:20px;border:2px solid #219AFC" readonly>
+							<input type="text" name="Total_Invoice" value="{{totalPricevnd}}" style="color:red; font-weight:bold; background:#DDDDDD;font-size:20px;border:2px solid #219AFC" readonly>
 							<p style="text-transform:uppercase">Địa Chỉ Giao Hàng</p>
 							
 							<input name="Shipping_Address" id="address" value="{{user?.address}}">

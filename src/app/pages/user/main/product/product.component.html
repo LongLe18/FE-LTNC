@@ -1,4 +1,65 @@
 
+<form class="navbar-nav mr-auto" style="flex-direction: row;">
+    <input type="text" id= "text-Search" class="form-control py-2 border-right-0 border" style="width:120%; background-color: transparent!important;
+    border-right: none !important; padding:18px 15px;position:relative" type="text" placeholder="Tìm kiếm...">
+    <span class="input-group-append">
+      <button class="input-group-text bg-transparent" style="border-left: none;" (click)="$event.preventDefault(); search()"><i class="fa fa-search"></i></button>
+    </span>
+</form>
+<br/>
+
+<div class="features_items" *ngIf="searchProducts.length > 0">
+    <h2 class="title text-center">Danh Sách Sản Phẩm</h2>
+    <marquee width="96%" behavior="alternate" bgcolor="#fe980f" style="margin-left:2%;margin-bottom:3%;border:2px solid black" *ngIf="searchProducts.length > 0">
+        <h2 class="title1 text-center" style="color:black; font-size:18px; text-transform:uppercase;width:60%" >
+            Sản phẩm tìm kiếm được
+        </h2>
+    </marquee>
+    <div style="display: flex; flex-wrap: wrap;">
+        <div class="col-sm-4 tim-kiem" *ngFor="let searchProduct of searchProducts">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="{{searchProduct.image}}" alt="" />
+                        <h2>{{searchProduct.pricesale}}</h2>
+                        <h4 *ngIf="searchProduct.sale == 0" style="color:transparent">{{searchProduct.price}}</h4> <!-- sale -->
+                        <h4 *ngIf="searchProduct.sale != 0">{{searchProduct.price}}</h4> <!-- sale -->
+                        <p style="font-weight: bold;">{{searchProduct.name_Product}}</p>
+                        <p  style="font-size:12px">
+                            <b>Số lượng</b>: còn {{searchProduct.quantity}} sản phẩm
+                        </p>
+                        <button (click)="addToCart(searchProduct)" style=" pointer-events: auto; padding: 6px 12px;"
+                            class="btn btn-default add-to-cart" *ngIf="searchProduct.quantity != 0">
+                            <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                        <img class="img-product"
+                            src="assets/images/home/hf.jpg" alt="" *ngIf="searchProduct.quantity == 0"/>
+                    </div>
+
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <img src="{{searchProduct.image}}" alt="" />
+                            <h2>{{searchProduct.pricesale}}</h2>
+                            <h4>{{searchProduct.price}}</h4> 
+                            <p style="font-weight: bold;">{{searchProduct.name_Product}}</p>
+                            <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(searchProduct)"												
+                                class="btn btn-default add-to-cart" *ngIf="searchProduct.quantity != 0"><i
+                                class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+                            <img class="img-product"
+                                    src="assets/images/home/hf.jpg" alt="" *ngIf="searchProduct.quantity == 0"/>
+                        </div>
+                    </div>
+                    <img src="assets/images/home/new.png" class="new" alt="" />
+                </div>
+                <div class="choose" style="text-align: center;">
+                    <ul class="nav nav-pills nav-justified" style="background:#219AFC !important;">
+                        <li style="width: 100%;padding: 10px 0"><a href="/pages-user/detailproduct/{{searchProduct.id_Product}}"><i class="fa fa-plus-square"></i>Xem chi tiết</a></li>                                  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="features_items" *ngIf="idCate != undefined">
     <h2 class="title text-center">Danh Sách Sản Phẩm</h2>
     <marquee width="96%" behavior="alternate" bgcolor="#fe980f" style="margin-left:2%;margin-bottom:3%;border:2px solid black" *ngIf="productsByCate != ''">
@@ -12,7 +73,7 @@
                 <div class="single-products">
                     <div class="productinfo text-center">
                         <img src="{{productByCate.image}}" alt="" />
-                        <h2>{{productByCate.price - productByCate.sale}}</h2>
+                        <h2>{{productByCate.pricesale}}</h2>
                         <h4 *ngIf="productByCate.sale == 0" style="color:transparent">{{productByCate.price}}</h4> <!-- sale -->
                         <h4 *ngIf="productByCate.sale != 0">{{productByCate.price}}</h4> <!-- sale -->
                         <p style="font-weight: bold;">{{productByCate.name_Product}}</p>
@@ -29,8 +90,8 @@
                     <div class="product-overlay">
                         <div class="overlay-content">
                             <img src="{{productByCate.image}}" alt="" />
-                            <h2>{{productByCate.price - productByCate.sale}}</h2>
-                            <h4 style="color:#219AFC;" >{{productByCate.price}}</h4> 
+                            <h2>{{productByCate.pricesale}}</h2>
+                            <h4>{{productByCate.price}}</h4> 
                             <p style="font-weight: bold;">{{productByCate.name_Product}}</p>
                             <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(productByCate)"												
                                 class="btn btn-default add-to-cart" *ngIf="productByCate.quantity != 0"><i
@@ -64,7 +125,7 @@
                 <div class="single-products">
                     <div class="productinfo text-center">
                         <img src="{{productByBrand.image}}" alt="" />
-                        <h2>{{productByBrand.price - productByBrand.sale}}</h2>
+                        <h2>{{productByBrand.pricesale}}</h2>
                         <h4 *ngIf="productByBrand.sale == 0" style="color:transparent">{{productByBrand.price}}</h4> <!-- sale -->
                         <h4 *ngIf="productByBrand.sale != 0">{{productByBrand.price}}</h4> <!-- sale -->
                         <p style="font-weight: bold;">{{productByBrand.name_Product}}</p>
@@ -81,8 +142,8 @@
                     <div class="product-overlay">
                         <div class="overlay-content">
                             <img src="{{productByBrand.image}}" alt="" />
-                            <h2>{{productByBrand.price - productByBrand.sale}}</h2>
-                            <h4 style="color:#219AFC;" >{{productByBrand.price}}</h4> 
+                            <h2>{{productByBrand.pricesale}}</h2>
+                            <h4>{{productByBrand.price}}</h4> 
                             <p style="font-weight: bold;">{{productByBrand.name_Product}}</p>
                             <button  style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(productByBrand)"												
                                 class="btn btn-default add-to-cart" *ngIf="productByBrand.quantity != 0"><i
@@ -123,7 +184,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{product.image}}" alt="" />
-                                    <h2>{{product.price - product.sale}}</h2>
+                                    <h2>{{product.pricesale}}</h2>
                                     <h4 *ngIf="product.sale == 0" style="color:transparent">{{product.price}}</h4> <!-- sale -->
                                     <h4 *ngIf="product.sale != 0">{{product.price}}</h4> <!-- sale -->
                                     <p style="font-weight: bold;">{{product.name_Product}}</p>
@@ -140,8 +201,8 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <img src="{{product.image}}" alt="" />
-                                        <h2>{{product.price - product.sale}}</h2>
-                                        <h4 style="color:#219AFC;" >{{product.price}}</h4> 
+                                        <h2>{{product.pricesale}}</h2>
+                                        <h4 >{{product.price}}</h4> 
                                         <p style="font-weight: bold;">{{product.name_Product}}</p>
                                         <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(product)"													
 									        class="btn btn-default add-to-cart" *ngIf="product.quantity != 0"><i
@@ -168,7 +229,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{saleproduct.image}}" alt="" />
-                                    <h2>{{saleproduct.price - saleproduct.sale}}</h2>
+                                    <h2>{{saleproduct.pricesale}}</h2>
                                     <h4 *ngIf="saleproduct.sale == 0" style="color:transparent">{{saleproduct.price}}</h4> <!-- sale -->
                                     <h4 *ngIf="saleproduct.sale != 0">{{saleproduct.price}}</h4> <!-- sale -->
                                     <p style="font-weight: bold;">{{saleproduct.name_Product}}</p>
@@ -185,8 +246,8 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <img src="{{saleproduct.image}}" alt="" />
-                                        <h2>{{saleproduct.price - saleproduct.sale}}</h2>
-                                        <h4 style="color:#219AFC;" >{{saleproduct.price}}</h4> 
+                                        <h2>{{saleproduct.pricesale}}</h2>
+                                        <h4  >{{saleproduct.price}}</h4> 
                                         <p style="font-weight: bold;">{{saleproduct.name_Product}}</p>
                                         <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(saleproduct)"											
 									        class="btn btn-default add-to-cart" *ngIf="saleproduct.quantity != 0"><i
@@ -212,13 +273,16 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{salefastlyproduct.image}}" alt="" />
-                                    <h2>{{salefastlyproduct.price - salefastlyproduct.sale}}</h2>
+                                    <h2>{{salefastlyproduct.pricesale}}</h2>
                                     <h4 *ngIf="salefastlyproduct.sale == 0" style="color:transparent">{{salefastlyproduct.price}}</h4> <!-- sale -->
                                     <h4 *ngIf="salefastlyproduct.sale != 0">{{salefastlyproduct.price}}</h4> <!-- sale -->
                                     <p style="font-weight: bold;">{{salefastlyproduct.name_Product}}</p>
                                     <p  style="font-size:12px">
                                         <b>Số lượng</b>: còn {{salefastlyproduct.quantity}} sản phẩm
-                                    </p>
+                                    </p> 
+                                    <p  style="font-size:12px">
+                                        <b>Số lượng bán được</b>: {{salefastlyproduct.salednumber}} sản phẩm
+                                    </p> 
                                     <button style=" pointer-events: auto; padding: 6px 12px;" (click)="addToCart(salefastlyproduct)"
 								        class="btn btn-default add-to-cart" *ngIf="salefastlyproduct.quantity != 0">
                                         <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
@@ -229,8 +293,8 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <img src="{{salefastlyproduct.image}}" alt="" />
-                                        <h2>{{salefastlyproduct.price - salefastlyproduct.sale}}</h2>
-                                        <h4 style="color:#219AFC;" >{{salefastlyproduct.price}}</h4> 
+                                        <h2>{{salefastlyproduct.pricesale}}</h2>
+                                        <h4 >{{salefastlyproduct.price}}</h4> 
                                         <p style="font-weight: bold;">{{salefastlyproduct.name_Product}}</p>
                                         <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(salefastlyproduct)"												
 									        class="btn btn-default add-to-cart" *ngIf="salefastlyproduct.quantity != 0"><i

@@ -50,7 +50,7 @@
                             {{productdetail?.price}} VNĐ</span>
                     </span>
                     <br/>
-                    <span>{{productdetail?.price - productdetail?.sale}} VNĐ</span> 
+                    <span>{{productdetail?.pricesale}} VNĐ</span> 
                 </span>
 
                 <p>
@@ -96,7 +96,7 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{product.image}}" alt="" />
-                                    <h2>{{product.price - product.sale}}</h2>
+                                    <h2>{{product.pricesale}}</h2>
                                     <h4 *ngIf="product.sale == 0" style="color:transparent">{{product.price}}</h4> <!-- sale -->
                                     <h4 *ngIf="product.sale != 0">{{product.price}}</h4> <!-- sale -->
                                     <p style="font-weight: bold;">{{product.name_Product}}</p>
@@ -113,8 +113,8 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <img src="{{product.image}}" alt="" />
-                                        <h2>{{product.price - product.sale}}</h2>
-                                        <h4 style="color:#219AFC;" >{{product.price}}</h4> 
+                                        <h2>{{product.pricesale}}</h2>
+                                        <h4 >{{product.price}}</h4> 
                                         <p style="font-weight: bold;">{{product.name_Product}}</p>
                                         <button style=" pointer-events: auto; background-color: #fff !important;" (click)="addToCart(product)"												
 									        class="btn btn-default add-to-cart" *ngIf="product.quantity != 0"><i
