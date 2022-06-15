@@ -79,7 +79,7 @@ export class CheckOutComponent implements OnDestroy, OnInit {
       })
       this.itemsCheckout.push({
         idProduct: listItems[i]['id_Product'],
-        price: listItems[i]['price'],
+        price: listItems[i]['pricevnd'],
         quantity: Count,      
         sale: listItems[i]['sale'],
     })
